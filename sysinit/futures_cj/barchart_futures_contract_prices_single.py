@@ -26,9 +26,7 @@ BARCHART_CONFIG = ConfigCsvFuturesPrices(
     ),
 )
 
-BACKUP_CONFIG = ConfigCsvFuturesPrices(
-    input_skiprows=0, input_skipfooter=1
-)
+BACKUP_CONFIG = ConfigCsvFuturesPrices(input_skiprows=0, input_skipfooter=1)
 
 
 def transfer_barchart_prices_to_arctic_single(instr, datapath):
