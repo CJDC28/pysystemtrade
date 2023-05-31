@@ -4,7 +4,7 @@ from syscore.constants import arg_not_supplied
 from sysdata.arctic.arctic_futures_per_contract_prices import (
     arcticFuturesContractPriceData,
 )
-from sysdata.mongodb.mongo_roll_data import mongoRollParametersData
+from sysdata.csv.csv_roll_parameters import csvRollParametersData
 from sysobjects.roll_calendars import rollCalendar
 from sysdata.csv.csv_roll_calendars import csvRollCalendarData
 from sysdata.csv.csv_futures_contract_prices import csvFuturesContractPriceData
@@ -43,7 +43,7 @@ def build_and_write_roll_calendar(
         prices = input_prices
 
     if input_config is arg_not_supplied:
-        rollparameters = mongoRollParametersData()
+        rollparameters = csvRollParametersData()
     else:
         rollparameters = input_config
 
@@ -129,16 +129,16 @@ if __name__ == "__main__":
     # input("Will overwrite existing prices are you sure?! CTL-C to abort")
 
     # "COFFEE", "COTTON2", "OJ", "SUGAR11"
-    instrument_code = "OJ"
+    instrument_code = "EURIBOR-ICE"
 
     build_and_write_roll_calendar(
         instrument_code=instrument_code,
         output_datapath="data.futures_cj.roll_calendars_csv",
         input_prices=csvFuturesContractPriceData(
             datapath=resolve_path_and_filename_for_package(
-                get_production_config().get_element_or_missing_data("backup_path")
+                get_production_config().get_element_or_default("backup_path", "")
             ),
-            config=BACKUP_CONFIG,
+            config=NORGATE_CONFIG,
         ),
         check_before_writing=False,
     )

@@ -33,15 +33,18 @@ def transfer_barchart_prices_to_arctic_single(instr, datapath):
     init_arctic_with_csv_futures_contract_prices_for_code(
         instr,
         datapath,
-        csv_config=BACKUP_CONFIG,
+        csv_config=NORGATE_CONFIG,
     )
 
 
 if __name__ == "__main__":
     input("Will overwrite existing prices are you sure?! CTL-C to abort")
+    fullpath = get_production_config().get_element_or_default("norgate_path", "")
     datapath = resolve_path_and_filename_for_package(
-        get_production_config().get_element_or_missing_data("barchart_path")
+        # get_production_config().get_element_or_default("barchart_path", "")
+        # get_production_config().get_element_or_default("norgate_path", "")
+        fullpath
     )
 
-    for instr in ["LUMBER-new"]:
+    for instr in ["EURIBOR-ICE"]:
         transfer_barchart_prices_to_arctic_single(instr, datapath=datapath)
