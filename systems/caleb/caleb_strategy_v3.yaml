@@ -657,7 +657,7 @@ instrument_weights:
       equity:
         weight: 0.143
         Americas:
-          weight: 0.333
+          weight: 0.5
           largecap:
             weight: 0.5
             DOW: 0.333
@@ -667,26 +667,20 @@ instrument_weights:
             weight: 0.5
             RUSSELL: 0.5
             SP400: 0.5
-        Asia:
-          weight: 0.333
-          NIKKEI: 1.0
         EMEA:
-          weight: 0.333
+          weight: 0.5
           swiss:
-            weight: 0.2
+            weight: 0.25
             SMI: 1.0
           german:
-            weight: 0.2
+            weight: 0.25
             DAX: 1.0
           eu:
-            weight: 0.2
+            weight: 0.25
             EUROSTX: 1.0
           france:
-            weight: 0.2
+            weight: 0.25
             CAC: 1.0
-          uk:
-            weight: 0.2
-            FTSE100: 1.0
       fx:
         weight: 0.143
         developed:
