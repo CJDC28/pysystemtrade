@@ -1,14 +1,10 @@
 #YAML
-#start_date: 2021-05-03
-#use_forecast_weight_estimates: True
-#use_forecast_div_mult_estimates: True
-#use_instrument_weight_estimates: True
-#use_instrument_div_mult_estimates: True
-#use_forecast_scale_estimates: True
-#forecast_scalar_estimate:
-#   pool_instruments: True
-#forecast_correlation_estimate:
-#   pool_instruments: True
+# start_date: 2000-01-19
+use_forecast_weight_estimates: False
+use_forecast_div_mult_estimates: False
+use_instrument_weight_estimates: False
+use_instrument_div_mult_estimates: True
+use_forecast_scale_estimates: False
 #
 # Raw data
 #
@@ -35,7 +31,7 @@ use_attenuation:
    - 'relmomentum20'
    - 'relmomentum40'
    - 'relmomentum80'
-   - 'mrinasset160'
+   - 'mrinasset1000'
    - 'assettrend2'
    - 'assettrend4'
    - 'assettrend8'
@@ -119,13 +115,13 @@ trading_rules:
          - "rawdata.normalised_price_for_asset_class"
      other_args:
        horizon: 80
-  mrinasset160:
+  mrinasset1000:
      function: systems.provided.rules.cs_mr.cross_sectional_mean_reversion
      data:
          - "rawdata.get_cumulative_daily_vol_normalised_returns"
          - "rawdata.normalised_price_for_asset_class"
      other_args:
-       horizon: 160
+       horizon: 1000
   carry10:
      function: systems.provided.rules.carry.carry
      data:
@@ -336,58 +332,50 @@ trading_rules:
          - "rawdata.daily_returns_volatility"
     other_args:
          Lfast: 64
-  mrwrings4:
-    function: systems.provided.rules.mr_wings.mr_wings
-    data:
-         - "rawdata.get_daily_prices"
-         - "rawdata.daily_returns_volatility"
-    other_args:
-         Lfast: 4
 #
 forecast_cap: 20.0
 #
 forecast_scalars:
-  accel16: 8.086975730328595
-  accel32: 5.773083347568979
-  accel64: 4.001312548210987
-  assettrend16: 11.259681997236283
-  assettrend2: 31.562881526308107
-  assettrend32: 7.1308650229489565
-  assettrend4: 22.74862663874014
-  assettrend64: 4.398472328806266
-  assettrend8: 16.32450725323789
-  breakout10: 0.619287692200888
-  breakout160: 0.7534126399502493
-  breakout20: 0.6966766380194719
-  breakout320: 0.7398375487144595
-  breakout40: 0.7302435207578835
-  breakout80: 0.7503785914453552
-  carry10: 29.561881418948047
-  carry125: 34.12127583924693
-  carry30: 30.571562366633678
-  carry60: 31.993450114452106
-  momentum16: 4.3662797087265615
-  momentum32: 2.962947789910157
-  momentum4: 8.967740469571318
-  momentum64: 2.0018793209696155
-  momentum8: 6.271679945789929
-  mrinasset160: 229.65186407547563
-  mrwrings4: 2.3955163009160536
-  normmom16: 11.601035815766396
-  normmom2: 33.73030785528321
-  normmom32: 7.815688441718635
-  normmom4: 23.443080903954588
-  normmom64: 5.309629009816947
-  normmom8: 16.541600520499426
-  relcarry: 55.2069015811022
-  relmomentum10: 63.4438166116262
-  relmomentum20: 90.82646203800806
-  relmomentum40: 125.00053673054441
-  relmomentum80: 171.78502653264118
-  skewabs180: 4.668460057134226
-  skewabs365: 2.4880643076110283
-  skewrv180: 5.138768081488491
-  skewrv365: 2.991492792813207
+  accel16: 7.8170710605387095
+  accel32: 5.563487137713779
+  accel64: 3.896720541225276
+  assettrend16: 3.549452858682833
+  assettrend2: 10.846520114531351
+  assettrend32: 2.3449234496490723
+  assettrend4: 7.572334583056326
+  assettrend64: 1.5465144366886119
+  assettrend8: 5.190470936448635
+  breakout10: 0.6031025130185256
+  breakout160: 0.7388310187414805
+  breakout20: 0.6742627921625178
+  breakout320: 0.7366197028421859
+  breakout40: 0.7036929411910525
+  breakout80: 0.726260784624834
+  carry10: 27.815707053556984
+  carry125: 29.366474500729886
+  carry30: 28.384062881349813
+  carry60: 28.40072429176199
+  momentum16: 4.104172020369661
+  momentum32: 2.786994330124792
+  momentum4: 8.539940954709955
+  momentum64: 1.9093945630747895
+  momentum8: 5.949404365193165
+  mrinasset1000: 653.253194
+  normmom16: 4.116536590599602
+  normmom2: 12.388305650778637
+  normmom32: 2.758872936017786
+  normmom4: 8.614429965006694
+  normmom64: 1.8706800701120874
+  normmom8: 5.979138542342214
+  relcarry: 49.44179741391023
+  relmomentum10: 61.24026078373817
+  relmomentum20: 86.50746400987076
+  relmomentum40: 117.77937298659975
+  relmomentum80: 159.87802982511536
+  skewabs180: 4.590246757939031
+  skewabs365: 2.351483885205172
+  skewrv180: 5.244752769697409
+  skewrv365: 3.002222097593425
 #
 # forecast combination
 #
