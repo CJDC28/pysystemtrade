@@ -5,6 +5,11 @@ use_forecast_div_mult_estimates: False
 use_instrument_weight_estimates: False
 use_instrument_div_mult_estimates: True
 use_forecast_scale_estimates: False
+
+# Set this to 0.13 to enforce the speed limit even for fixed weights or
+#   regardless of what an estimator does
+forecast_post_ceiling_cost_SR: 0.13
+
 #
 # Raw data
 #
