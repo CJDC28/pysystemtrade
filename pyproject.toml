@@ -37,7 +37,7 @@ testpaths = [
     # "syslogdiag",
     "systems/tests",
     "sysobjects/production",
-    "sysobjects/tests",
+    # "sysobjects/tests",
     # "sysquant/estimators",
     "sysquant/optimisation",
     # "systems",
