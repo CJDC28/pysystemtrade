@@ -7,6 +7,7 @@ from sysdata.sim.db_futures_sim_data import dbFuturesSimData
 from systems.diagoutput import systemDiag
 from matplotlib.pyplot import show
 
+SAVED_SYSTEM = "systems.caleb.saved-system.pck"
 
 def static_system():
     from systems.provided.futures_chapter15.basesystem import futures_system
@@ -28,7 +29,8 @@ def do_system():
         # config=Config("systems.caleb.simple_config.yaml")
         # config=Config("systems.caleb.andy_strategy_v1.yaml")
         # config_filename="systems.caleb.caleb_strategy_v2.yaml"
-        config_filename="systems.caleb.simple_strategy.yaml"
+        # config_filename="systems.caleb.simple_strategy.yaml"
+        config_filename="systems.caleb.caleb_strategy_v3.yaml"
     )
     return system
 
@@ -43,12 +45,12 @@ def write_config(system):
     sysdiag.yaml_config_with_estimated_parameters(
         output_file,
         [
-            "forecast_scalars",
-            "forecast_weights",
+            #"forecast_scalars",
+            #"forecast_weights",
             "forecast_div_multiplier",
-            "forecast_mapping",
-            "instrument_weights",
-            "instrument_div_multiplier",
+            #"instrument_weights",
+            #"forecast_mapping",
+            #"instrument_div_multiplier",
         ],
     )
 
@@ -65,8 +67,14 @@ def run_dynamic():
     # )
 
     portfolio.curve().plot()
-    # write_config(system)
+    write_config(system)
+    write_pickle_file(system)
     show()
+
+
+def write_pickle_file(system):
+    print(f"Writing pickled system to {SAVED_SYSTEM}")
+    system.cache.pickle(SAVED_SYSTEM)
 
 
 if __name__ == "__main__":
