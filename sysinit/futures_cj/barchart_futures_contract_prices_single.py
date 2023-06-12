@@ -46,5 +46,5 @@ if __name__ == "__main__":
         fullpath
     )
 
-    for instr in ["EURIBOR-ICE"]:
+    for instr in ["JGB-SGX-mini"]:
         transfer_barchart_prices_to_arctic_single(instr, datapath=datapath)

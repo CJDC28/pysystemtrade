@@ -129,7 +129,7 @@ if __name__ == "__main__":
     # input("Will overwrite existing prices are you sure?! CTL-C to abort")
 
     # "COFFEE", "COTTON2", "OJ", "SUGAR11"
-    instrument_code = "EURIBOR-ICE"
+    instrument_code = "JGB-SGX-mini"
 
     build_and_write_roll_calendar(
         instrument_code=instrument_code,

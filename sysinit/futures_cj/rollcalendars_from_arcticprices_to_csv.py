@@ -126,7 +126,7 @@ if __name__ == "__main__":
     # build_and_write_roll_calendar(instrument_code, output_datapath=arg_not_supplied)
 
     # for instr in ['DX', 'EUR', 'GBP', 'NZD']:
-    instrument_code = "EURIBOR-ICE"
+    instrument_code = "JGB-SGX-mini"
     build_and_write_roll_calendar(
         instrument_code,
         output_datapath="data.futures_cj.roll_calendars_csv",
