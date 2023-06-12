@@ -2720,6 +2720,7 @@ exclude_instrument_lists:
     - VNKI
     - YENEUR
     - DX
+    - JGB-SGX-mini
 
   #
   # Here we put stuff we can't trade, but for which we still want to bring in prices in sim
