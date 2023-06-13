@@ -14,7 +14,7 @@ def create_dashboard_file():
     template = jinja_env.get_template("monitor_template.html")
 
     with dataBlob(log_name="system-monitor") as data:
-        data.log.msg("Starting process monitor...")
+        data.log.debug("Starting process monitor...")
         process_observatory = processMonitor(data)
 
         vars = {

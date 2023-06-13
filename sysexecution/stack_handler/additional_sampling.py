@@ -13,7 +13,7 @@ class stackHandlerAdditionalSampling(stackHandlerCore):
             if contract.instrument_code not in IGNORE_LIST:
                 self.refresh_sampling_for_contract(contract)
             else:
-                self.log.msg(f"Ignoring {contract.instrument_code}, no sample")
+                self.log.debug(f"Ignoring {contract.instrument_code}, no sample")
                 continue
 
     def get_all_instruments_priced_contracts(self):
