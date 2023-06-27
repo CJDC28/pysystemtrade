@@ -2626,101 +2626,10 @@ exclude_instrument_lists:
   #
   # REVIEW REGULARLY AND CHECK THESE INSTRUMENTS AREN'T BETTER ELSEWHERE...
   ignore_instruments:
-    - AEX
-    - ALUMINIUM
-    - BBCOMM
-    - BONO
-    - BOVESPA
-    - BRE
-    - BRENT-LAST
-    - BTP3
-    - BUTTER
-    - CH10
-    - CHEESE
-    - CNH
-    - COTTON
-    - CZK
-    - DJSTX-SMALL
-    - ETHANOL
-    - ETHEREUM
-    - EU-AUTO
-    - EU-BANKS
-    - EU-BASIC
-    - EU-CHEM
-    - EU-CONSTRUCTION
-    - EU-DIV30
-    - EU-DJ-TELECOM
-    - EU-FOOD
-    - EU-HEALTH
-    - EU-HOUSE
-    - EU-INSURE
-    - EU-MEDIA
-    - EU-MID
-    - EU-OIL
-    - EU-REALESTATE
-    - EU-RETAIL
-    - EU-TECH
-    - EU-TRAVEL
-    - EU-UTILS
-    - EURCHF
-    - EURO600
-    - EUROSTX-LARGE
-    - EUROSTX-SMALL
-    - EUROSTX200-LARGE
-    - FTSECHINAA
-    - FTSECHINAH
-    - FTSEINDO
-    - FTSETAIWAN
-    - GAS-LAST
-    - GBPEUR
-    - INR
-    - IRON
-    - IRS
-    - JGB
-    - JP-REALESTATE
-    - KOSDAQ
-    - KOSPI
-    - KR10
-    - KR3
-    - KRWUSD
-    - MILK
-    - MILKDRY
-    - MILKWET
-    - MSCIASIA
-    - MSCISING
-    - MUMMY
-    - NIFTY
-    - NIKKEI400
-    - NOK
-    - OATIES
-    - OMX
-    - R1000
-    - RUR
-    - SEK
-    - SGD
-    - SMI
-    - SMI-MID
-    - TOPIX
-    - US-DISCRETE
-    - US-ENERGY
-    - US-FINANCE
-    - US-HEALTH
-    - US-INDUSTRY
-    - US-MATERIAL
-    - US-PROPERTY
-    - US-REALESTATE
-    - US-STAPLES
-    - US-TECH
-    - US-UTILS
-    - US3
-    - USIRS10
-    - USIRS5
-    - USIRS5ERIS
-    - V2X
-    - VNKI
-    - YENEUR
-    - DX
+    - GAS_US
     - JGB-SGX-mini
+    - NASDAQ
+    - SP500
 
   #
   # Here we put stuff we can't trade, but for which we still want to bring in prices in sim
@@ -2738,6 +2647,8 @@ exclude_instrument_lists:
   # Run interactive controls to get a list of suggested markets here
   # To override this list, change in sim .yaml config (sim) and private_config.yaml (production)
   bad_markets:
+    - CAC
+    - DX
     - EDOLLAR
     - EURIBOR
     - LUMBER
@@ -2746,5 +2657,3 @@ exclude_instrument_lists:
     - RICE
     - SHATZ
     - US2
-    - DX
-    - CAC
