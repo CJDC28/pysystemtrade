@@ -515,8 +515,8 @@ forecast_div_multiplier:
   EUROSTX: 1.8979432084208372
   FEEDCOW: 1.8979432084208372
   GASOIL: 1.8979432084208372
-  GASOILINE: 1.8979432084208372
-  GAS_US: 1.8979432084208372
+  GASOLINE: 1.8979432084208372
+  GAS_US_mini: 1.8979432084208372
   GBP: 1.8979432084208514
   GOLD_micro: 1.8979432084208372
   HEATOIL: 1.8979432084208514
@@ -526,7 +526,7 @@ forecast_div_multiplier:
   LUMBER-new: 1.0
   MILK: 1.8979432084208372
   MXP: 1.8979432084208372
-  NASDAQ: 1.8979432084208514
+  NASDAQ_micro: 1.8979432084208514
   NZD: 1.8979432084208372
   OAT: 1.8979432084172754
   OATIES: 1.8979432084208372
@@ -545,7 +545,7 @@ forecast_div_multiplier:
   SOYMEAL: 1.8979432084208372
   SOYOIL: 1.8979432084208372
   SP400: 1.8979432084208514
-  SP500: 1.8979432084208514
+  SP500_micro: 1.8979432084208514
   SUGAR11: 1.8979432084208372
   US10: 1.8979432084208372
   US10U: 1.8979345495833742
@@ -622,7 +622,7 @@ instrument_weights:
       rates:
         weight: 0.143
         Americas:
-          weight: 0.5
+          weight: 0.333
           govvie:
             weight: 0.5
             US2: 0.143
@@ -634,8 +634,13 @@ instrument_weights:
           STIR:
             weight: 0.5
             SOFR: 1.0
+        Asia:
+          weight: 0.333
+          japan:
+            weight: 1.0
+            JGB-SGX-mini: 1.0
         EMEA:
-          weight: 0.5
+          weight: 0.333
           german:
             weight: 0.25
             SHATZ: 0.25
@@ -654,18 +659,23 @@ instrument_weights:
       equity:
         weight: 0.143
         Americas:
-          weight: 0.5
+          weight: 0.333
           largecap:
             weight: 0.5
             DOW: 0.333
-            SP500: 0.333
-            NASDAQ: 0.333
+            SP500_micro: 0.333
+            NASDAQ_micro: 0.333
           midcap:
             weight: 0.5
             RUSSELL: 0.5
             SP400: 0.5
+        Asia:
+          weight: 0.333
+          japan:
+            weight: 1.0
+            NIKKEI: 1.0
         EMEA:
-          weight: 0.5
+          weight: 0.333
           swiss:
             weight: 0.25
             SMI: 1.0
@@ -710,14 +720,14 @@ instrument_weights:
         weight: 0.143
         gas:
           weight: 0.333
-          GAS_US: 1.0
+          GAS_US_mini: 1.0
         oil:
           weight: 0.333
           CRUDE_W: 1.0
         products:
           weight: 0.333
           GASOIL: 0.333
-          GASOILINE: 0.333
+          GASOLINE: 0.333
           HEATOIL: 0.333
       vol:
         weight: 0.143
@@ -730,6 +740,13 @@ instrument_div_multiplier: 2.5
 #  max_risk_fraction_stdev_risk: 3.6
 #  max_risk_limit_sum_abs_risk: 3.4
 #  max_risk_leverage: 13.0
+
+# small system optimisation
+small_system:
+  shadow_cost: 500
+  cost_multiplier: 1.0
+  tracking_error_buffer: 0.0125
+  shrink_instrument_returns_correlation: 0.5
 
 #
 # duplicated/excluded instruments are ignored in backtests
@@ -747,32 +764,32 @@ duplicate_instruments:
     copper: 'COPPER'
     corn: 'CORN'
     crude: 'CRUDE_W'
-    gas_us: 'GAS_US'
-    gasoiline: 'GASOILINE'
+    gas_us: 'GAS_US_mini'
+    gasoline: 'GASOLINE'
     gold: 'GOLD_micro'
     heatoil: 'HEATOIL'
     jpy: 'JPY'
-    nasdaq: 'NASDAQ'
+    nasdaq: 'NASDAQ_micro'
     nikkei: 'NIKKEI'
     silver: 'SILVER-mini'
     soybean: 'SOYBEAN'
-    sp500: 'SP500'
+    sp500: 'SP500_micro'
     vix: 'VIX'
     wheat: 'WHEAT'
   exclude:
     copper: 'COPPER-mini'
     corn: 'CORN_mini'
     crude: 'CRUDE_W_mini'
-    gas_us: 'GAS_US_mini'
-    gasoiline: 'GASOILINE_mini'
+    gas_us: 'GAS_US'
+    gasoline: 'GASOLINE_mini'
     gold: 'GOLD'
     heatoil: 'HEATOIL_mini'
     jpy: ['JPY_micro','JPY-SGX-TITAN', 'JPY-SGX']
-    nasdaq: 'NASDAQ_micro'
+    nasdaq: 'NASDAQ'
     nikkei: 'NIKKEI-JPY'
     silver: 'SILVER'
     soybean: 'SOYBEAN_mini'
-    sp500: 'SP500_micro'
+    sp500: 'SP500'
     vix: 'VIX_mini'
     wheat: 'WHEAT_mini'
 
@@ -797,7 +814,6 @@ exclude_instrument_lists:
   # NOTE: This will be regionally biased, you will probably want to override this in private_config.yaml
   #
   trading_restrictions:
-    - NIKKEI
     - FTSE100
 
   # These are markets that are too expensive or illiquid to actually trade
@@ -808,11 +824,8 @@ exclude_instrument_lists:
   # To override this list, change in sim .yaml config (sim) and private_config.yaml (production)
   bad_markets:
     - EDOLLAR
-    - EURIBOR
     - LUMBER
     - OATIES
     - SHATZ
     - US2
-    - NIKKEI
-    - LUMBER-new
     - SOFR
