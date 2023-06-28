@@ -529,7 +529,10 @@ def risk_scaling_string(backtest) -> str:
         backtest_system_portfolio_stage.get_leverage_for_original_position().iloc[-1]
     )
     percentage_vol_target = backtest_system_portfolio_stage.get_percentage_vol_target()
-    risk_scalar_final = backtest_system_portfolio_stage.get_risk_scalar().iloc[-1]
+    if type(backtest_system_portfolio_stage.get_risk_scalar()) is float:
+        risk_scalar_final = backtest_system_portfolio_stage.get_risk_scalar()
+    else:
+        risk_scalar_final = backtest_system_portfolio_stage.get_risk_scalar().iloc[-1]
     risk_overlay_config = (
         backtest_system_portfolio_stage.config.get_element_or_arg_not_supplied(
             "risk_overlay"
