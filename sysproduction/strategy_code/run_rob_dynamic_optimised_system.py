@@ -7,7 +7,9 @@ from sysproduction.data.sim_data import get_sim_data_object_for_production
 from sysproduction.strategy_code.run_system_classic import (
     runSystemClassic,
 )
-from sysproduction.strategy_code.run_dynamic_optimised_system import updated_optimal_positions_for_dynamic_system
+from sysproduction.strategy_code.run_dynamic_optimised_system import (
+    updated_optimal_positions_for_dynamic_system,
+)
 
 from syslogging.logger import *
 
