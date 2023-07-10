@@ -86,9 +86,8 @@ def _send_msg(msg: MIMEMultipart):
 
     # Send the message via our own SMTP server, but don't include the
     # envelope header.
-    s = smtplib.SMTP(email_server, email_port, timeout=10)
+    s = smtplib.SMTP_SSL(email_server, email_port, timeout=10)
     context = ssl.create_default_context()
-    # add tls for those using yahoo or gmail.
     try:
         s.starttls(context=context)
     except:

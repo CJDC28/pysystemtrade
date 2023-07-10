@@ -15,6 +15,18 @@ class missingData(Exception):
     pass
 
 
+class missingFile(Exception):
+    pass
+
+
+class marketClosed(Exception):
+    pass
+
+
+class fillExceedsTrade(Exception):
+    pass
+
+
 class existingData(Exception):
     pass
 
