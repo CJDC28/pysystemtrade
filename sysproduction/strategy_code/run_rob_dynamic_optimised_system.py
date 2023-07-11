@@ -47,7 +47,7 @@ class runRobSystemCarryTrendDynamic(runSystemClassic):
 def dynamic_rob_system(
     data: dataBlob,
     config_filename: str,
-    log=logtoscreen("futures_system"),
+    log=get_logger("futures_system"),
     notional_trading_capital: float = arg_not_supplied,
     base_currency: str = arg_not_supplied,
 ) -> System:
