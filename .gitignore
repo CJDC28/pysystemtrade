@@ -30,9 +30,6 @@ venv/
 # libreoffice
 .~lock.*
 
-# jupyter
-*.ipynb
-
 notes/
 
 data/Norgate
