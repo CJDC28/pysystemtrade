@@ -20,20 +20,25 @@ ECONOMIC_TREND_DIRECTORY = "data.economic_trend.fred"
 trend_config = {
     "GROWTH": {
         "span": 4,
+        "from_year": 2000,
         "date_format": "%Y-%m-%d",
     },
     "MONPOLICY": {
-        "span": 4,
+        "span": 64,
+        "from_year": 2018,
         "date_format": "%Y-%m-%d",
     },
     "INFLATION": {
-        "span": 4,
+        "span": 16,
+        "from_year": 2003,
         "date_format": "%b %Y",
     },
     "INTTRADE": {
-        "span": 16,
+        "span": 256,
+        "from_year": 2009,
         "date_format": "%Y-%m-%d",
-        "multiplier": 0.01000
+        "multiplier": 0.01,
+        "resample": "1B",
     },
     "RISKAV": {
         "span": 4,
@@ -85,8 +90,14 @@ class csvEconomicTrendData(baseData):
 
             df.columns = ["value"]
 
+            mask = (df.index > datetime.datetime(config["from_year"], 1, 1))
+            df = df.loc[mask]
+
             if "multiplier" in config:
                 df["value"] = df["value"] * config["multiplier"]
+
+            if "resample" in config:
+                df = df.resample(config["resample"]).last()
 
             df['fast_ewma'] = pd.Series.ewm(df['value'], span=config["span"]).mean()
             df['slow_ewma'] = pd.Series.ewm(df['value'], span=config["span"]*4).mean()
@@ -108,13 +119,8 @@ class csvEconomicTrendData(baseData):
 
 if __name__ == "__main__":
     data = csvEconomicTrendData()
-
-    #df = data.get_trend("GROWTH").plot()
-    #df = data.get_trend("MONPOLICY").plot()
-    #df = data.get_trend("INFLATION").plot()
-
     for trend in ["GROWTH", "MONPOLICY", "INFLATION", "INTTRADE"]:
         df = data.get_trend(trend)
-        df = df["ewmac"]
-        df.plot()
+        #df = df["ewmac"]
+        df.plot(title=trend)
         show()
