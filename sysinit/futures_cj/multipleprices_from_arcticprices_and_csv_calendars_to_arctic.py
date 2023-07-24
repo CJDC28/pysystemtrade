@@ -211,7 +211,7 @@ if __name__ == "__main__":
     #     csv_roll_data_path=csv_roll_data_path,
     # )
 
-    for instr in ["JGB-SGX-mini"]:
+    for instr in ["DX"]:
         process_multiple_prices_single_instrument(
             instrument_code=instr,
             adjust_calendar_to_prices=True,

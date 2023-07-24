@@ -74,5 +74,5 @@ if __name__ == "__main__":
     #     ADD_TO_ARCTIC=True, ADD_TO_CSV=True, csv_adj_data_path=arg_not_supplied
     # )
 
-    for instr in ["JGB-SGX-mini"]:
+    for instr in ["DX"]:
         process_adjusted_prices_single_instrument(instr, ADD_TO_ARCTIC=True)

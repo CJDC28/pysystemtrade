@@ -129,7 +129,7 @@ if __name__ == "__main__":
     # input("Will overwrite existing prices are you sure?! CTL-C to abort")
 
     # "COFFEE", "COTTON2", "OJ", "SUGAR11"
-    instrument_code = "JGB-SGX-mini"
+    instrument_code = "DX"
 
     build_and_write_roll_calendar(
         instrument_code=instrument_code,
@@ -138,7 +138,7 @@ if __name__ == "__main__":
             datapath=resolve_path_and_filename_for_package(
                 get_production_config().get_element_or_default("backup_path", "")
             ),
-            config=NORGATE_CONFIG,
+            config=BACKUP_CONFIG,
         ),
         check_before_writing=False,
     )
