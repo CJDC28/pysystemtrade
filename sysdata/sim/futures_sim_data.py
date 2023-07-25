@@ -257,6 +257,22 @@ class futuresSimData(simData):
 
         raise NotImplementedError()
 
+    def get_instrument_region(self, instrument_code: str) -> str:
+        """
+        What region is this instrument from?
+
+        :param instrument_code: instrument to get value for
+        :type instrument_code: str
+
+        :returns: str
+
+        """
+        instr_object = self.get_instrument_object_with_meta_data(instrument_code)
+        meta_data = instr_object.meta_data
+        region = meta_data.Region
+
+        return region
+
 
 if __name__ == "__main__":
     import doctest

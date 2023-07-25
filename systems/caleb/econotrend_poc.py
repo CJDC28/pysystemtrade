@@ -23,68 +23,78 @@ class calebRawData(RawData):
         print(f"Asset class for {instrument_code}: {asset_class}")
         return asset_class
 
+    def region(self, instrument_code) -> str:
+        region = self.parent.data.get_instrument_region(instrument_code)
+        print(f"Region for {instrument_code}: {region}")
+        return region
 
-def economic_trend(data, asset_class, bullish, bearish):
+
+def economic_trend(data, asset_class, instr_reg, rule_region, bullish, bearish):
     """
     Economic trend trading rule
     # Ags, Bond, Equity, FX, Metals, OilGas, STIR, Vol
     """
-    if asset_class in bullish:
+    region_match = instr_reg == rule_region
+    if region_match and (asset_class in bullish):
         result = data
-    elif asset_class in bearish:
+    elif region_match and (asset_class in bearish):
         result = -data
     else:
-        result = data[:] = 0
+        result = pd.Series(0.0, index=data.index)
 
     return result
 
 
-# Economic trend rule variation - Growth
-growth_rule = TradingRule(
+# US Economic trend rule variation - Growth
+us_growth_rule = TradingRule(
     dict(
         function=economic_trend,
-        data=['rawdata.economic_trend', 'rawdata.asset_class'],
+        data=['rawdata.economic_trend', 'rawdata.asset_class', 'rawdata.region'],
         other_args=dict(
-            _trend_name='GROWTH',
+            _trend_name='US_GROWTH',
+            rule_region='US',
             bullish=['Equity', 'Ags', 'FX', 'Metals', 'OilGas'],
             bearish=['Bond', 'STIR'],
         )
     )
 )
 
-# Economic trend rule variation - Inflation
-inflation_rule = TradingRule(
+# US Economic trend rule variation - Inflation
+us_inflation_rule = TradingRule(
     dict(
         function=economic_trend,
-        data=['rawdata.economic_trend', 'rawdata.asset_class'],
+        data=['rawdata.economic_trend', 'rawdata.asset_class', 'rawdata.region'],
         other_args=dict(
-            _trend_name='INFLATION',
-            bullish=['FX'],
+            _trend_name='US_INFLATION',
+            rule_region='US',
+            bullish=['Ags', 'FX', 'Metals', 'OilGas'],
             bearish=['Equity', 'Bond', 'STIR'],
         )
     )
 )
 
-# Economic trend rule variation - International Trade
-inttrade_rule = TradingRule(
+# US Economic trend rule variation - International Trade
+us_inttrade_rule = TradingRule(
     dict(
         function=economic_trend,
-        data=['rawdata.economic_trend', 'rawdata.asset_class'],
+        data=['rawdata.economic_trend', 'rawdata.asset_class', 'rawdata.region'],
         other_args=dict(
-            _trend_name='INTTRADE',
+            _trend_name='US_INTTRADE',
+            rule_region='US',
             bullish=['Equity'],
             bearish=[],
         )
     )
 )
 
-# Economic trend rule variation - Monetary Policy
-monpolicy_rule = TradingRule(
+# US Economic trend rule variation - Monetary Policy
+us_monpolicy_rule = TradingRule(
     dict(
         function=economic_trend,
-        data=['rawdata.economic_trend', 'rawdata.asset_class'],
+        data=['rawdata.economic_trend', 'rawdata.asset_class', 'rawdata.region'],
         other_args=dict(
-            _trend_name='MONPOLICY',
+            _trend_name='US_MONPOLICY',
+            rule_region='US',
             bullish=['Equity', 'Ags', 'FX', 'Metals', 'OilGas'],
             bearish=['Bond', 'STIR'],
         )
@@ -93,10 +103,10 @@ monpolicy_rule = TradingRule(
 
 rules = Rules(
     dict(
-        etrend_growth=growth_rule,
-        etrend_inflation=inflation_rule,
-        etrend_inttrade=inttrade_rule,
-        etrend_monpolicy=monpolicy_rule,
+        etrend_growth=us_growth_rule,
+        etrend_inflation=us_inflation_rule,
+        etrend_inttrade=us_inttrade_rule,
+        etrend_monpolicy=us_monpolicy_rule,
     )
 )
 
@@ -112,3 +122,6 @@ if __name__ == "__main__":
 
     inflation_fc = system.rules.get_raw_forecast("SP500", "etrend_inflation")[-1]
     print(f"inflation forecast: {inflation_fc}")
+
+    non_us_fc = system.rules.get_raw_forecast("DAX", "etrend_inflation")[-1]
+    print(f"non_us_fc forecast: {non_us_fc}")

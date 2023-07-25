@@ -18,29 +18,29 @@ ECONOMIC_TREND_DIRECTORY = "data.economic_trend.fred"
 # INTTRADE has daily values from 1998, hourly from mid 2008
 # RISKAV
 trend_config = {
-    "GROWTH": {
+    "US_GROWTH": {
         "span": 4,
         "from_year": 2000,
         "date_format": "%Y-%m-%d",
     },
-    "MONPOLICY": {
+    "US_MONPOLICY": {
         "span": 64,
         "from_year": 2018,
         "date_format": "%Y-%m-%d",
     },
-    "INFLATION": {
+    "US_INFLATION": {
         "span": 16,
         "from_year": 2003,
         "date_format": "%b %Y",
     },
-    "INTTRADE": {
+    "US_INTTRADE": {
         "span": 256,
         "from_year": 2009,
         "date_format": "%Y-%m-%d",
         "multiplier": 0.01,
         "resample": "1B",
     },
-    "RISKAV": {
+    "US_RISKAV": {
         "span": 4,
         "date_format": "%Y-%m-%d",
     },
