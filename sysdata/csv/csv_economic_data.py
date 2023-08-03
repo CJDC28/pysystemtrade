@@ -48,7 +48,6 @@ trend_config = {
 
 
 class csvEconomicTrendData(baseData):
-
     def __init__(
         self, datapath=arg_not_supplied, log=get_logger("csvEconomicTrendData")
     ):
@@ -80,17 +79,14 @@ class csvEconomicTrendData(baseData):
             config = trend_config[trend_code]
 
             try:
-                df = pd_readcsv(
-                    filename,
-                    date_format=config["date_format"]
-                )
+                df = pd_readcsv(filename, date_format=config["date_format"])
             except OSError:
                 self.log.warning("Can't find economic trend file %s" % filename)
                 return economicTrendData.create_empty()
 
             df.columns = ["value"]
 
-            mask = (df.index > datetime.datetime(config["from_year"], 1, 1))
+            mask = df.index > datetime.datetime(config["from_year"], 1, 1)
             df = df.loc[mask]
 
             if "multiplier" in config:
@@ -99,9 +95,9 @@ class csvEconomicTrendData(baseData):
             if "resample" in config:
                 df = df.resample(config["resample"]).last()
 
-            df['fast_ewma'] = pd.Series.ewm(df['value'], span=config["span"]).mean()
-            df['slow_ewma'] = pd.Series.ewm(df['value'], span=config["span"]*4).mean()
-            df['ewmac'] = df['fast_ewma'] - df['slow_ewma']
+            df["fast_ewma"] = pd.Series.ewm(df["value"], span=config["span"]).mean()
+            df["slow_ewma"] = pd.Series.ewm(df["value"], span=config["span"] * 4).mean()
+            df["ewmac"] = df["fast_ewma"] - df["slow_ewma"]
 
             trend_data = economicTrendData(df)
 
@@ -112,15 +108,13 @@ class csvEconomicTrendData(baseData):
         return trend_data
 
     def _filename_given_instrument_code(self, trend_code: str):
-        return resolve_path_and_filename_for_package(
-            self.datapath, f"{trend_code}.csv"
-        )
+        return resolve_path_and_filename_for_package(self.datapath, f"{trend_code}.csv")
 
 
 if __name__ == "__main__":
     data = csvEconomicTrendData()
     for trend in ["GROWTH", "MONPOLICY", "INFLATION", "INTTRADE"]:
         df = data.get_trend(trend)
-        #df = df["ewmac"]
+        # df = df["ewmac"]
         df.plot(title=trend)
         show()

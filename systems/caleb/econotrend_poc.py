@@ -1,3 +1,5 @@
+import datetime
+
 import pandas as pd
 from systems.provided.futures_chapter15.basesystem import *
 from systems.trading_rules import TradingRule
@@ -12,20 +14,21 @@ class calebRawData(RawData):
     """
     custom raw data class
     """
+
     def economic_trend(self, instrument_code, trend_name) -> pd.Series:
         df = self.data_stage.data.db_economic_trend.get_trend(trend_name)
         series = df["ewmac"]
-        print(f"Economic trend {trend_name}:\n{series}")
+        # print(f"Economic trend {trend_name}:\n{series}")
         return series
 
     def asset_class(self, instrument_code) -> str:
         asset_class = self.parent.data.asset_class_for_instrument(instrument_code)
-        print(f"Asset class for {instrument_code}: {asset_class}")
+        # print(f"Asset class for {instrument_code}: {asset_class}")
         return asset_class
 
     def region(self, instrument_code) -> str:
         region = self.parent.data.get_instrument_region(instrument_code)
-        print(f"Region for {instrument_code}: {region}")
+        # print(f"Region for {instrument_code}: {region}")
         return region
 
 
@@ -42,6 +45,14 @@ def economic_trend(data, asset_class, instr_reg, rule_region, bullish, bearish):
     else:
         result = pd.Series(0.0, index=data.index)
 
+    min_date = data.index.min()
+    max_date = datetime.datetime.now()
+    daterange = pd.date_range(min_date, max_date)
+
+    result = result.reindex(daterange)
+    result = result.ffill()
+    result = result.resample("1B").last()
+
     return result
 
 
@@ -49,13 +60,13 @@ def economic_trend(data, asset_class, instr_reg, rule_region, bullish, bearish):
 us_growth_rule = TradingRule(
     dict(
         function=economic_trend,
-        data=['rawdata.economic_trend', 'rawdata.asset_class', 'rawdata.region'],
+        data=["rawdata.economic_trend", "rawdata.asset_class", "rawdata.region"],
         other_args=dict(
-            _trend_name='US_GROWTH',
-            rule_region='US',
-            bullish=['Equity', 'Ags', 'FX', 'Metals', 'OilGas'],
-            bearish=['Bond', 'STIR'],
-        )
+            _trend_name="US_GROWTH",
+            rule_region="US",
+            bullish=["Equity", "Ags", "FX", "Metals", "OilGas"],
+            bearish=["Bond", "STIR"],
+        ),
     )
 )
 
@@ -63,13 +74,13 @@ us_growth_rule = TradingRule(
 us_inflation_rule = TradingRule(
     dict(
         function=economic_trend,
-        data=['rawdata.economic_trend', 'rawdata.asset_class', 'rawdata.region'],
+        data=["rawdata.economic_trend", "rawdata.asset_class", "rawdata.region"],
         other_args=dict(
-            _trend_name='US_INFLATION',
-            rule_region='US',
-            bullish=['Ags', 'FX', 'Metals', 'OilGas'],
-            bearish=['Equity', 'Bond', 'STIR'],
-        )
+            _trend_name="US_INFLATION",
+            rule_region="US",
+            bullish=["Ags", "FX", "Metals", "OilGas"],
+            bearish=["Equity", "Bond", "STIR"],
+        ),
     )
 )
 
@@ -77,13 +88,13 @@ us_inflation_rule = TradingRule(
 us_inttrade_rule = TradingRule(
     dict(
         function=economic_trend,
-        data=['rawdata.economic_trend', 'rawdata.asset_class', 'rawdata.region'],
+        data=["rawdata.economic_trend", "rawdata.asset_class", "rawdata.region"],
         other_args=dict(
-            _trend_name='US_INTTRADE',
-            rule_region='US',
-            bullish=['Equity'],
+            _trend_name="US_INTTRADE",
+            rule_region="US",
+            bullish=["Equity"],
             bearish=[],
-        )
+        ),
     )
 )
 
@@ -91,13 +102,13 @@ us_inttrade_rule = TradingRule(
 us_monpolicy_rule = TradingRule(
     dict(
         function=economic_trend,
-        data=['rawdata.economic_trend', 'rawdata.asset_class', 'rawdata.region'],
+        data=["rawdata.economic_trend", "rawdata.asset_class", "rawdata.region"],
         other_args=dict(
-            _trend_name='US_MONPOLICY',
-            rule_region='US',
-            bullish=['Equity', 'Ags', 'FX', 'Metals', 'OilGas'],
-            bearish=['Bond', 'STIR'],
-        )
+            _trend_name="US_MONPOLICY",
+            rule_region="US",
+            bullish=["Equity", "Ags", "FX", "Metals", "OilGas"],
+            bearish=["Bond", "STIR"],
+        ),
     )
 )
 
@@ -110,18 +121,27 @@ rules = Rules(
     )
 )
 
-system = System([
-   Account(), Portfolios(), PositionSizing(), calebRawData(),
-   ForecastCombine(), ForecastScaleCap(), rules
-], data, config)
+system = System(
+    [
+        Account(),
+        Portfolios(),
+        PositionSizing(),
+        calebRawData(),
+        ForecastCombine(),
+        ForecastScaleCap(),
+        rules,
+    ],
+    data,
+    config,
+)
 
 
 if __name__ == "__main__":
-    growth_fc = system.rules.get_raw_forecast("SP500", "etrend_growth")[-1]
-    print(f"growth forecast: {growth_fc}")
+    growth_fc = system.rules.get_raw_forecast("SP500_micro", "etrend_growth")[-1]
+    # print(f"growth forecast: {growth_fc}")
 
-    inflation_fc = system.rules.get_raw_forecast("SP500", "etrend_inflation")[-1]
-    print(f"inflation forecast: {inflation_fc}")
-
-    non_us_fc = system.rules.get_raw_forecast("DAX", "etrend_inflation")[-1]
-    print(f"non_us_fc forecast: {non_us_fc}")
+    # inflation_fc = system.rules.get_raw_forecast("SP500", "etrend_inflation")[-1]
+    # print(f"inflation forecast: {inflation_fc}")
+    #
+    # non_us_fc = system.rules.get_raw_forecast("DAX", "etrend_inflation")[-1]
+    # print(f"non_us_fc forecast: {non_us_fc}")
