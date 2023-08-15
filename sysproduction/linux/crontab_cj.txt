@@ -10,6 +10,7 @@ PYSYS_CODE=/home/caleb/pysystemtrade
 SCRIPT_PATH=/home/caleb/pysystemtrade/sysproduction/linux/scripts
 ECHO_PATH=/home/caleb/echos
 PYSYS_PRIVATE_CONFIG_DIR=/home/caleb/harbor-macro/pst-prod
+PYSYS_LOGGING_CONFIG=syslogging.logging_prod.yaml
 
 0,15,30,45 * * * 1-7 export DISPLAY=:1 && /bin/bash /opt/ibc/gatewaystart.sh
 00 03  * * 1-5     conda activate base; $SCRIPT_PATH/run_stack_handler  >> $ECHO_PATH/run_stack_handler.txt 2>&1; conda deactivate
