@@ -72,23 +72,30 @@ def dynamic_system(
     return system
 
 
+from sysdata.sim.db_futures_sim_data import dbFuturesSimData
 from systems.forecasting import Rules
 from systems.basesystem import System
 from systems.forecast_combine import ForecastCombine
-from systems.forecast_scale_cap import ForecastScaleCap
-from systems.rawdata import RawData
 from systems.positionsizing import PositionSizing
 from systems.portfolio import Portfolios
 from systems.provided.dynamic_small_system_optimise.optimised_positions_stage import (
     optimisedPositions,
 )
-from systems.risk import Risk
 from systems.provided.dynamic_small_system_optimise.accounts_stage import (
     accountForOptimisedStage,
 )
+from systems.provided.attenuate_vol.vol_attenuation_forecast_scale_cap import (
+    volAttenForecastScaleCap,
+)
+from systems.provided.rob_system.rawdata import myFuturesRawData
+from systems.risk import Risk
 
+def futures_system(
+    data=arg_not_supplied, config=None
+):
 
-def futures_system(data, config):
+    if data is arg_not_supplied:
+        data = dbFuturesSimData()
 
     system = System(
         [
@@ -97,9 +104,9 @@ def futures_system(data, config):
             optimisedPositions(),
             Portfolios(),
             PositionSizing(),
-            RawData(),
+            myFuturesRawData(),
             ForecastCombine(),
-            ForecastScaleCap(),
+            volAttenForecastScaleCap(),
             Rules(),
         ],
         data,
