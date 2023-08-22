@@ -45,8 +45,9 @@ class expiryDate(datetime.datetime):
 
     @classmethod
     def from_str(expiryDate, date_as_str: str):
+        #print(f"^^^^^^^^ expiryDate from_str() {date_as_str}")
         try:
-            as_date = datetime.datetime.strptime(date_as_str, EXPIRY_DATE_FORMAT)
+            as_date = datetime.datetime.strptime(date_as_str[:8], EXPIRY_DATE_FORMAT)
         except:
             raise Exception(
                 "Expiry date %s not in format %s" % date_as_str, EXPIRY_DATE_FORMAT
@@ -93,12 +94,14 @@ class singleContractDate(object):
 
         try:
             assert isinstance(date_str, str)
-            assert int(date_str)
+            #assert int(date_str)
 
             if len(date_str) == 6:
                 self._init_with_yymm(date_str)
             elif len(date_str) == 8:
                 self._init_with_yymmdd(date_str)
+            elif len(date_str) == 20:
+                self._init_with_yymmdd(date_str[:8])
             else:
                 raise Exception("Can't parse %s as YYYYMM or YYYYMMDD" % str(date_str))
 
