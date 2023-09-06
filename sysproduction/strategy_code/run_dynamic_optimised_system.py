@@ -90,9 +90,8 @@ from systems.provided.attenuate_vol.vol_attenuation_forecast_scale_cap import (
 from systems.provided.rob_system.rawdata import myFuturesRawData
 from systems.risk import Risk
 
-def futures_system(
-    data=arg_not_supplied, config=None
-):
+
+def futures_system(data=arg_not_supplied, config=None):
 
     if data is arg_not_supplied:
         data = dbFuturesSimData()

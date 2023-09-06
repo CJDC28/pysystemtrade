@@ -34,7 +34,6 @@ class cleanTruncateBacktestStates:
         offline = production_config.get_element("offsystem_backup_directory")
         self.data.log.debug(
             f"Deleting old .pck and .yaml backtest state files in directory '{offline}'"
-
         )
         delete_old_files_with_extension_in_pathname(
             offline, days_old=3, extension=".pck"
