@@ -13,6 +13,28 @@ SAVED_SYSTEM = "systems.caleb.saved-system.pck"
 def static_system():
     from systems.provided.futures_chapter15.basesystem import futures_system
 
+    """
+    >>> from systems.provided.rob_system.run_system import futures_system
+    >>> from sysdata.sim.csv_futures_sim_data import csvFuturesSimData
+    >>> system = futures_system(sim_data=csvFuturesSimData())
+    >>> portfolio = system.accounts.portfolio()
+    >>> system.cache.pickle("systems.provided.rob_system.saved-system.pck")
+    >>> system.cache.unpickle("systems.provided.rob_system.saved-system.pck")
+    >>> print(portfolio.percent.stats())
+    >>> instr_pnl = system.accounts.pandl_for_instrument("FED")
+    >>> results = []
+    >>> for instr in system.portfolio.get_instrument_list(for_instrument_weights=True, auto_remove_bad_instruments=True):
+    >>> for instr in system.portfolio.get_instrument_list():
+    >>>   instr_pnl = system.accounts.pandl_for_instrument(instr)
+    >>>   ss_pnl = system.accounts.pandl_for_subsystem(instr)
+    >>>   print(f"{instr}: {instr_pnl.stats()}")
+    >>>   print(f"{instr}: {instr_pnl.sharpe()}")
+    >>>   print(f"{instr}: {ss_pnl.sharpe()}")
+    >>>   results.append((instr, round(ss_pnl.sharpe(), 4)))
+    >>>
+    >>> sorted_results = sorted(results, key=lambda tup: tup[1])
+    """
+
     system = futures_system(
         data=dbFuturesSimData(), config=Config("systems.caleb.simple_config.yaml")
     )
