@@ -20,7 +20,6 @@ class dataFrameOfRecentTicks(pd.DataFrame):
             columns
         ), "historical ticks should have columns %s" % str(TICK_REQUIRED_COLUMNS)
 
-
     def average_bid_offer_spread(self, remove_negative=True) -> float:
         return average_bid_offer_spread(self, remove_negative=remove_negative)
 

@@ -98,6 +98,7 @@ def run_market_monitor_report():
 def run_account_curve_report():
     pass
 
+
 def instrument_risk_csv():
     output = dict()
     sim_data = csvFuturesSimData()
@@ -109,7 +110,9 @@ def instrument_risk_csv():
         p.iterate()
     p.close()
 
-    filename = resolve_path_and_filename_for_package("sysproduction.reporting", "futures_instrument_risk.pickle")
+    filename = resolve_path_and_filename_for_package(
+        "sysproduction.reporting", "futures_instrument_risk.pickle"
+    )
     with open(filename, "wb+") as fhandle:
         pickle.dump(output, fhandle)
 
@@ -140,4 +143,4 @@ if __name__ == "__main__":
     # run_adhoc_tradeable_report()
     # run_adhoc_tradeable_report(instr_code="GAS_US_fsb")
 
-    #instrument_risk_csv()
+    # instrument_risk_csv()
