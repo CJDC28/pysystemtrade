@@ -1,8 +1,13 @@
+import pickle
+from syscore.fileutils import resolve_path_and_filename_for_package
+from syscore.interactive.progress_bar import progressBar
 from sysdata.data_blob import dataBlob
+from sysdata.sim.csv_futures_sim_data import csvFuturesSimData
 from sysproduction.reporting.reporting_functions import (
     run_report_with_data_blob,
     pandas_display_for_reports,
 )
+from sysproduction.reporting.data.risk import get_risk_data_for_instrument
 from sysproduction.reporting.report_configs import *
 
 
@@ -93,6 +98,21 @@ def run_market_monitor_report():
 def run_account_curve_report():
     pass
 
+def instrument_risk_csv():
+    output = dict()
+    sim_data = csvFuturesSimData()
+    instr_list = sim_data.db_futures_multiple_prices_data.get_list_of_instruments()
+    p = progressBar(len(instr_list))
+    for instr in instr_list:
+        risk = get_risk_data_for_instrument(sim_data.data, instr)
+        output[instr] = risk
+        p.iterate()
+    p.close()
+
+    filename = resolve_path_and_filename_for_package("sysproduction.reporting", "futures_instrument_risk.pickle")
+    with open(filename, "wb+") as fhandle:
+        pickle.dump(output, fhandle)
+
 
 if __name__ == "__main__":
     # run_slippage_report()
@@ -119,3 +139,5 @@ if __name__ == "__main__":
 
     # run_adhoc_tradeable_report()
     # run_adhoc_tradeable_report(instr_code="GAS_US_fsb")
+
+    #instrument_risk_csv()
