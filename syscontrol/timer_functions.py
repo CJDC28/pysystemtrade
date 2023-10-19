@@ -27,7 +27,6 @@ class timerClassWithFunction(object):
         self._data = data
         self._parameters = parameters
 
-        log.setup(type=self.process_name)
         self._log = log
         self._report_status = reportStatus(log)
 

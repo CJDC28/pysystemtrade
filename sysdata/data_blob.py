@@ -18,7 +18,7 @@ class dataBlob(object):
         csv_data_paths: dict = arg_not_supplied,
         ib_conn: connectionIB = arg_not_supplied,
         mongo_db: mongoDb = arg_not_supplied,
-        log: pst_logger = arg_not_supplied,
+        log=arg_not_supplied,
         keep_original_prefix: bool = False,
     ):
         """
@@ -40,7 +40,7 @@ class dataBlob(object):
         This abstracts the precise data source
 
         :param arg_string: str like a named tuple in the form 'classNameOfData1 classNameOfData2' and so on
-        :param log_name: pst_logger type to set
+        :param log_name: logger name
         :param keep_original_prefix: bool. If True then:
 
             data = dataBlob([arcticFuturesContractPriceData, arcticFuturesContractPriceData, mongoFuturesContractData])
@@ -208,7 +208,7 @@ class dataBlob(object):
 
     def _get_specific_logger(self, class_object):
         class_name = get_class_name(class_object)
-        log = self.log.setup(**{COMPONENT_LOG_LABEL: class_name})
+        log = get_logger(self.log.name, {COMPONENT_LOG_LABEL: class_name})
 
         return log
 
@@ -243,7 +243,7 @@ class dataBlob(object):
     def _add_attr_to_list(self, new_attr: str):
         self._attr_list.append(new_attr)
 
-    def update_log(self, new_log: pst_logger):
+    def update_log(self, new_log):
         self._log = new_log
 
     """
