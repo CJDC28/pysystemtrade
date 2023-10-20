@@ -295,7 +295,7 @@ class ibContractsClient(ibClient):
             self.log.warning(
                 "%s when getting min tick size from %s!"
                 % (str(e), str(ib_contract_details)),
-                log_attrs,
+                **log_attrs,
             )
             raise missingContract
 
@@ -337,7 +337,7 @@ class ibContractsClient(ibClient):
         except missingContract:
             self.log.warning(
                 "Can't get trading hours as contract is missing",
-                contract_object_with_ib_data.log_attributes(),
+                **contract_object_with_ib_data.log_attributes(),
                 method="temp",
             )
             raise
