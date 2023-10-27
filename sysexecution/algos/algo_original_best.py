@@ -1,8 +1,8 @@
 """
 This is the original 'best execution' algo I used in my legacy system
 """
+import time
 from typing import Union
-
 from syscore.exceptions import missingData, marketClosed
 from sysexecution.orders.named_order_objects import missing_order
 
@@ -167,6 +167,7 @@ class algoOriginalBest(Algo):
         )
 
         while trade_open:
+            time.sleep(0.1)
             if broker_order_with_controls_and_order_id.message_required(
                 messaging_frequency_seconds=MESSAGING_FREQUENCY
             ):
