@@ -167,6 +167,7 @@ class algoOriginalBest(Algo):
         )
 
         while trade_open:
+            log.debug("Start 'trade_open' loop")
             time.sleep(0.1)
             if broker_order_with_controls_and_order_id.message_required(
                 messaging_frequency_seconds=MESSAGING_FREQUENCY
@@ -219,6 +220,8 @@ class algoOriginalBest(Algo):
             if order_cancelled:
                 log.warning("Order has been cancelled: not by algo")
                 break
+
+            log.debug("End 'trade_open' loop")
 
         return broker_order_with_controls_and_order_id
 
