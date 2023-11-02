@@ -92,7 +92,7 @@ class algoMarket(Algo):
             % str(broker_order_with_controls.order)
         )
         while trade_open:
-            time.sleep(0.1)
+            time.sleep(0.001)
             log_message_required = broker_order_with_controls.message_required(
                 messaging_frequency_seconds=MESSAGING_FREQUENCY
             )
