@@ -229,7 +229,7 @@ def limit_trade_viable(  # TODO passed logger instance
     data_broker: dataBroker,
     order: contractOrder,
     ticker_object: tickerObject,
-    log: pst_logger,
+    log,
 ) -> bool:
 
     # no point doing limit order if we've got imbalanced size issues, as we'd

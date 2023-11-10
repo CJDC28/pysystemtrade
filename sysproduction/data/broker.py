@@ -45,7 +45,6 @@ from sysproduction.data.generic_production_data import productionDataLayerGeneri
 
 
 class dataBroker(productionDataLayerGeneric):
-
     def __init__(self, data: dataBlob = arg_not_supplied):
         super().__init__(data)
         self._diag_controls = diagControlProcess()
