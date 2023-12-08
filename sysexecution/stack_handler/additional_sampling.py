@@ -45,7 +45,6 @@ class stackHandlerAdditionalSampling(stackHandlerCore):
         return instrument_list
 
     def refresh_sampling_for_contract(self, contract: futuresContract):
-
         okay_to_sample = self.is_contract_currently_okay_to_sample(contract)
         if not okay_to_sample:
             return None
@@ -81,7 +80,6 @@ class stackHandlerAdditionalSampling(stackHandlerCore):
         return average_spread
 
     def add_spread_data_to_db(self, contract: futuresContract, average_spread: float):
-
         ## we store by instrument
         instrument_code = contract.instrument_code
         update_prices = self.update_prices
