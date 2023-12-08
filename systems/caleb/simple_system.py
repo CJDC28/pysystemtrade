@@ -18,7 +18,6 @@ print(system)
 
 
 def pandl_for_instrument_rules():
-
     system.config.start_date = "2010-01-01"
 
     # how all trading rules have done for a particular instrument (returns accountCurveGroup)

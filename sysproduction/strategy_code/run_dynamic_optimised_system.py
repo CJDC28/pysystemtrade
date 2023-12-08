@@ -90,7 +90,6 @@ from systems.risk import Risk
 
 
 def futures_system(data=arg_not_supplied, config=None):
-
     if data is arg_not_supplied:
         data = dbFuturesSimData()
 

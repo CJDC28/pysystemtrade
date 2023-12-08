@@ -7,7 +7,6 @@ from syscontrol.monitor import processMonitor
 
 
 def create_dashboard_file():
-
     jinja_env = Environment(
         loader=FileSystemLoader("../templates"), autoescape=select_autoescape()
     )

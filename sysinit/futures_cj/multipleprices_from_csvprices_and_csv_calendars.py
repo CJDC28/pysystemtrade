@@ -58,7 +58,6 @@ def process_multiple_prices_all_instruments(
     ADD_TO_ARCTIC=True,
     ADD_TO_CSV=True,
 ):
-
     (
         _not_used1,
         arctic_individual_futures_prices,
@@ -88,7 +87,6 @@ def process_multiple_prices_single_instrument(
     ADD_TO_ARCTIC=True,
     ADD_TO_CSV=True,
 ):
-
     (
         csv_roll_calendars,
         csv_prices,

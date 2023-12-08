@@ -18,7 +18,6 @@ from systems.provided.rob_system.run_system import futures_system
 
 
 class runRobSystemCarryTrendDynamic(runSystemClassic):
-
     # DO NOT CHANGE THE NAME OF THIS FUNCTION; IT IS HARDCODED INTO CONFIGURATION FILES
     # BECAUSE IT IS ALSO USED TO LOAD BACKTESTS
     def system_method(
@@ -51,7 +50,6 @@ def dynamic_rob_system(
     notional_trading_capital: float = arg_not_supplied,
     base_currency: str = arg_not_supplied,
 ) -> System:
-
     sim_data = get_sim_data_object_for_production(data)
     config = Config(config_filename)
 

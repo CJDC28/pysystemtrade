@@ -54,7 +54,6 @@ def init_db_with_csv_futures_contract_prices_for_code(
 def init_arctic_with_csv_futures_contract_prices_for_contract(
     instrument_code: str, date_str: str, datapath: str, csv_config=arg_not_supplied
 ):
-
     print(f"Instrument code: {instrument_code}")
     csv_prices = csvFuturesContractPriceData(datapath, config=csv_config)
     arctic_prices = arcticFuturesContractPriceData()

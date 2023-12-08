@@ -72,7 +72,6 @@ class csvEconomicTrendData(baseData):
         return trend_code in self.get_trend_list()
 
     def get_trend(self, trend_code: str) -> economicTrendData:
-
         if self.is_code_in_data(trend_code):
             filename = self._filename_given_instrument_code(trend_code)
 

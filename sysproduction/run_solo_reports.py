@@ -14,7 +14,6 @@ def run_solo_report(
     instrument_code=None,
     use_db=True,
 ):
-
     if instrument_code is None:
         config = reportConfig(title=title, function=function, output=format)
     else:
@@ -124,7 +123,6 @@ def run_remove_markets_report():
 
 
 if __name__ == "__main__":
-
     # costs_report:
     # run_solo_report(title="Costs report", function="sysproduction.reporting.costs_report.costs_report") # NOT WORKING
 

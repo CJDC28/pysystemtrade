@@ -7,7 +7,6 @@ from sysdata.arctic.arctic_adjusted_prices import arcticFuturesAdjustedPricesDat
 
 
 def correlation_data(instr, db_data=None, csv_data=None, draw=False):
-
     if db_data is None:
         db_data = arcticFuturesAdjustedPricesData()
 
@@ -71,7 +70,6 @@ def do_plot(instr, prices, returns):
 
 
 def all_report():
-
     db_data = arcticFuturesAdjustedPricesData()
     csv_data = csvFuturesSimData()
 
@@ -96,7 +94,6 @@ def all_report():
 
 
 if __name__ == "__main__":
-
     # correlation_data("MXP", draw=True)
     # correlation_data("CAD", draw=True)
     # correlation_data("CHF", draw=True)

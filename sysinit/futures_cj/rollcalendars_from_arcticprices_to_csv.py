@@ -26,7 +26,6 @@ def build_and_write_roll_calendar(
     roll_parameters_data: rollParametersData = arg_not_supplied,
     roll_parameters: rollParameters = arg_not_supplied,
 ):
-
     if output_datapath is arg_not_supplied:
         print(
             "*** WARNING *** This will overwrite the provided roll calendar. Might be better to use a temporary directory!"
@@ -88,7 +87,6 @@ def build_and_write_roll_calendar(
 def check_saved_roll_calendar(
     instrument_code, input_datapath=arg_not_supplied, input_prices=arg_not_supplied
 ):
-
     if input_datapath is None:
         print(
             "This will check the roll calendar in the default directory : are you are that's what you want to do?"

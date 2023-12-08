@@ -53,7 +53,6 @@ BACKUP_CONFIG = ConfigCsvFuturesPrices(
 
 
 def rename_files(pathname, norgate_instr_code=None, dry_run=True):
-
     """
     Renames Norgate price files into the format expected by pysystemtrdae. By default will move them into a directory
     named pathname + '_conv', which must exist. So
@@ -93,7 +92,6 @@ def rename_files(pathname, norgate_instr_code=None, dry_run=True):
         month = month_from_contract_letter(monthcode)
 
         if identifier in market_map:
-
             instrument = market_map[identifier]
 
             instr_config = instr_config_src._get_instrument_data_without_checking(
