@@ -15,8 +15,8 @@ PYSYS_LOGGING_CONFIG=syslogging.logging_prod.yaml
 0,15,30,45 * * * 1-7 export DISPLAY=:1 && /bin/bash /opt/ibc/gatewaystart.sh
 00 03  * * 1-5     conda activate py_310; $SCRIPT_PATH/run_stack_handler  >> $ECHO_PATH/run_stack_handler.txt 2>&1; conda deactivate
 50 03  * * 1-5     conda activate py_310; $SCRIPT_PATH/run_capital_update  >> $ECHO_PATH/run_capital_update.txt 2>&1; conda deactivate
-05 20  * * 1-5     conda activate py_310; $SCRIPT_PATH/run_daily_price_updates >> $ECHO_PATH/run_daily_price_updates.txt 2>&1; conda deactivate
 05 07  * * 1-5     conda activate py_310; $SCRIPT_PATH/run_daily_fx_and_contract_updates >> $ECHO_PATH/run_daily_fx_and_contract_updates.txt 2>&1; conda deactivate
+05 20  * * 1-5     conda activate py_310; $SCRIPT_PATH/run_daily_price_updates >> $ECHO_PATH/run_daily_price_updates.txt 2>&1; conda deactivate
 30 20  * * 1-5     conda activate py_310; $SCRIPT_PATH/run_daily_update_multiple_adjusted_prices >> $ECHO_PATH/run_daily_update_multiple_adjusted_prices.txt 2>&1; conda deactivate
 35 20  * * 1-5     conda activate py_310; $SCRIPT_PATH/run_systems  >> $ECHO_PATH/run_systems.txt 2>&1; conda deactivate
 45 20  * * 1-5     conda activate py_310; $SCRIPT_PATH/run_strategy_order_generator  >> $ECHO_PATH/run_strategy_order_generator.txt 2>&1; conda deactivate
