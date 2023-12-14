@@ -105,6 +105,18 @@ setup(
     include_package_data=True,
     entry_points={
         "console_scripts": [
+            "pst-startup = sysproduction.startup:startup",
+            "pst-stack = sysproduction.run_stack_handler:run_stack_handler",
+            "pst-capital = sysproduction.run_capital_update:run_capital_update",
+            "pst-fx = sysproduction.run_daily_fx_and_contract_updates:run_daily_fx_and_contract_updates",
+            "pst-prices = sysproduction.run_daily_price_updates:run_daily_price_updates",
+            "pst-multadj = sysproduction.run_daily_update_multiple_adjusted_prices:run_daily_update_multiple_adjusted_prices",
+            "pst-systems = sysproduction.run_systems:run_systems",
+            "pst-orders = sysproduction.run_strategy_order_generator:run_strategy_order_generator",
+            "pst-clean = sysproduction.run_cleaners:run_cleaners",
+            "pst-backup = sysproduction.run_backups:run_backups",
+            "pst-reports = sysproduction.run_reports:run_reports",
+            "pst-monitor = syscontrol.monitor:monitor",
             "pst = sysproduction.pst:pst",
         ],
     },
