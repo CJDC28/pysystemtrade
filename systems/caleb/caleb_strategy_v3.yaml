@@ -813,6 +813,7 @@ exclude_instrument_lists:
   #
   trading_restrictions:
     - FTSE100
+    - BITCOIN
 
   # These are markets that are too expensive or illiquid to actually trade
   # For the dynamically optimised strategy this list will be used in sim as 'don't trade'
@@ -825,5 +826,7 @@ exclude_instrument_lists:
     - LUMBER
     - OATIES
     - SHATZ
+    - SMI
     - US2
+    - US20
     - SOFR
