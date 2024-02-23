@@ -822,6 +822,7 @@ exclude_instrument_lists:
   # Run interactive controls to get a list of suggested markets here
   # To override this list, change in sim .yaml config (sim) and private_config.yaml (production)
   bad_markets:
+    - CAC
     - EDOLLAR
     - LUMBER
     - OATIES
