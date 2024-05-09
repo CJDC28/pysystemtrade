@@ -814,6 +814,8 @@ exclude_instrument_lists:
   trading_restrictions:
     - FTSE100
     - BITCOIN
+    - CAC
+    - SMI
 
   # These are markets that are too expensive or illiquid to actually trade
   # For the dynamically optimised strategy this list will be used in sim as 'don't trade'
