@@ -20,7 +20,8 @@ PYSYS_LOGGING_CONFIG=syslogging.logging_prod.yaml
 30 20  * * 1-5     conda activate py_310; pst-multadj >> $ECHO_PATH/run_daily_update_multiple_adjusted_prices.txt 2>&1; conda deactivate
 35 20  * * 1-5     conda activate py_310; pst-systems >> $ECHO_PATH/run_systems.txt 2>&1; conda deactivate
 45 20  * * 1-5     conda activate py_310; pst-orders >> $ECHO_PATH/run_strategy_order_generator.txt 2>&1; conda deactivate
-00 21  * * 1-5     conda activate py_310; pst-clean >> $ECHO_PATH/run_cleaners.txt 2>&1; conda deactivate
+00 21  * * 1-5     /usr/sbin/logrotate -v /home/caleb/harbor-macro/pst-prod/logrotate.conf --state /home/caleb/.logrotate.state >> /home/caleb/logrotate.log 2>&1
+15 21  * * 1-5     conda activate py_310; pst-clean >> $ECHO_PATH/run_cleaners.txt 2>&1; conda deactivate
 15 21  * * 1-5     conda activate py_310; pst-backup >> $ECHO_PATH/run_backups_echos.txt 2>&1; conda deactivate
 30 21  * * 1-5     conda activate py_310; pst-reports >> $ECHO_PATH/run_reports.txt 2>&1; conda deactivate
 15 22  * * 1-5     $SCRIPT_PATH/manage_report_files.sh >> $ECHO_PATH/manage_report_files.txt 2>&1
@@ -38,6 +39,7 @@ PYSYS_LOGGING_CONFIG=syslogging.logging_prod.yaml
 # 20:30 run_daily_update_multiple_adjusted_prices
 # 20:35 run_systems
 # 20:45 run_strategy_order_generator
-# 21:00 run_cleaners
+# 21:00 logrotate
+# 21:15 run_cleaners
 # 21:15 run_backups
 # 21:30 run_reports
