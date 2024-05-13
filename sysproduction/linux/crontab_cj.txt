@@ -40,6 +40,6 @@ PYSYS_LOGGING_CONFIG=syslogging.logging_prod.yaml
 # 20:35 run_systems
 # 20:45 run_strategy_order_generator
 # 21:00 logrotate
-# 21:15 run_cleaners
-# 21:15 run_backups
+# 21:10 run_cleaners
+# 21:20 run_backups
 # 21:30 run_reports
