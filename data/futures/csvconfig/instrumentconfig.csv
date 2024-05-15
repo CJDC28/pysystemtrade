@@ -62,7 +62,7 @@ CANOLA,Rapeseed (Canola) in CAD,20,CAD,Ags,2.4,0,0,US
 CETES,91 Day Treasury Bill,1000,MXP,STIR,0,0,0,US
 CH10,Swiss Federal Long-Term Bonds,1000,CHF,Bond,4,0,0,EMEA
 CHEESE,Cheese,20000,USD,Ags,2.97,0,0,US
-CHF,CHFUSD currency,125000,USD,FX,1.5,0,0,US
+CHF,CHFUSD currency,125000,USD,FX,2.47,0,0,US
 CHF_micro,CHFUSD micro,12500,USD,FX,0.41,0,0,US
 CHFJPY,CHFJPY,250000,JPY,FX,329.4,0,0,US
 CHFJPY-ICE,CHFJPY,250000,JPY,FX,85,0,0,US
@@ -175,7 +175,7 @@ EURCHF-ICE,Euro/chf,125000,CHF,FX,0,0,0,US
 EURCZK,CZK.EUR,4000000,EUR,FX,0,0,0,US
 EURHUF,HUF.EUR,30000000,EUR,FX,0,0,0,US
 EURIBOR,Three Month EURIBOR,2500,EUR,Bond,2,0,0,EMEA
-EURIBOR-ICE,3 Month EURIBOR Interest Rate,2500,EUR,Bond,0,0,0,EMEA
+EURIBOR-ICE,3 Month EURIBOR Interest Rate,2500,EUR,Bond,2.00,0,0,EMEA
 EURINR,EURINR,1000,INR,FX,0,0,0,ASIA
 EURMXP,EURMXP,10000,MXP,FX,0,0,0,US
 EURO600,Dow Jones STOXX 600 Index,50,EUR,Equity,2,0,0,EMEA
@@ -210,7 +210,7 @@ GAS_US,Natural gas US,10000,USD,OilGas,2.47,0,0,US
 GAS_US_mini,Natural gas US mini,2500,USD,OilGas,1.37,0,0,US
 GAS-LAST,Natural Gas Last Day Financial Futures Index,10000,USD,OilGas,2.47,0,0,US
 GAS-PEN,Natural Gas Penultimate Financial Futures Index,10000,USD,OilGas,2.47,0,0,US
-GASOIL,ICE-EU Low Sulphur Gasoil,100,USD,OilGas,1.7,0,0,EMEA
+GASOIL,ICE-EU Low Sulphur Gasoil,100,USD,OilGas,2.40,0,0,EMEA
 GASOILINE,RBOB Gasoline US,42000,USD,OilGas,2.37,0,0,US
 GASOLINE,RBOB Gasoline US,42000,USD,OilGas,2.37,0,0,US
 GASOILINE_ICE,ICE NYH RBOB Gasoline,42000,USD,OilGas,0,0,0,EMEA
@@ -380,7 +380,7 @@ OMX,OMX Helsinki 25 Index,10,EUR,Equity,2,0,0,EMEA
 OMX-SWE,OMX Index [Sweden],100,SEK,Equity,0,0,0,EMEA
 OMXESG,OMXS30 ESG Responsible Index,100,SEK,Equity,0,0,0,EMEA
 OMXSB,OMXSB Share Index,100,SEK,Equity,0,0,0,EMEA
-PALLAD,Palladium,100,USD,Metals,2.31,0,0,US
+PALLAD,Palladium,100,USD,Metals,2.47,0,0,US
 PIPELINE,Gulf Coast ULSD (Platts) Up-Down Futures,42000,USD,OilGas,0.85,0,0,US
 PLAT,Platinum,50,USD,Metals,2.47,0,0,US
 PLAT-JPN,Platinum (Standard) - Japan,500,JPY,Metals,0,0,0,ASIA
@@ -394,7 +394,7 @@ R1000GROWTH-mini,E-mini Russell 1000 Growth Index Futures,50,USD,Equity,0.85,0,0
 RAPESEED,European Rapeseed Future,50,EUR,Ags,2,0,0,EMEA
 REDWHEAT,Hard Red Winter Wheat -KCBOT-,50,USD,Ags,2.97,0,0,US
 RICE,Rough Rice,2000,USD,Ags,2.97,0,0,US
-ROBUSTA,Robusta Coffee,10,USD,Ags,3,0,0,EMEA
+ROBUSTA,Robusta Coffee,10,USD,Ags,3.10,0,0,EMEA
 RUBBER,TSR 20 Rubber,50,USD,Other,2.85,0,0,ASIA
 RUBBER-RSS,Ribbed Smoked Sheet (RSS) No.3 Rubber,5000,JPY,Other,0,0,0,ASIA
 RUR,RURUSD currency,2500000,USD,FX,2.47,0,0,US
@@ -409,7 +409,7 @@ SGD_mini,SGX US Dollar in Singapore Dollar (Mini) Futures,25000,SGD,FX,3.25,0,0,
 SGX,SGX Straits Times Index,10,SGD,Equity,5,0,0,ASIA
 SHATZ,German 2 year bond Schatz,1000,EUR,Bond,2,0,0,EMEA
 SILVER,NYMEX Silver Index,1000,USD,Metals,1.27,0,0,US
-SILVER-mini,COMEX MINY Silver,2500,USD,Metals,0.85,0,0,US
+SILVER-mini,COMEX MINY Silver,2500,USD,Metals,1.87,0,0,US
 SING-REALESTATE,SGX iEdge S-REIT Leaders Index,25,SGD,Equity,0,0,0,ASIA
 SMALL75,Small stocks 75,100,USD,Equity,0,0,0,US
 SMI,Swiss equity index SMI,10,CHF,Equity,4,0,0,EMEA
@@ -532,7 +532,7 @@ US10,US 10 year bond note,1000,USD,Bond,1.67,0,0,US
 US10U,Ultra 10-Year US Treasury Note,1000,USD,Bond,1.67,0,0,US
 US10Y_micro,10 Year Micro Treasury Yield,1000,USD,Bond,0,0,0,US
 US10Y_small,Small 10YR US Treasury Yield,100,USD,Bond,0,0,0,US
-US2,US 2 year bond note,2000,USD,Bond,1.51,0,0,US
+US2,US 2 year bond note,2000,USD,Bond,1.52,0,0,US
 US20,US 20 year bond,1000,USD,Bond,1.74,0,0,US
 US20-new,Ultra 20-Year U.S. Treasury Bond,1000,USD,Bond,0,0,0,US
 US2Y_micro,2 Year Micro Treasury Yield,1000,USD,Bond,0,0,0,US
@@ -541,7 +541,7 @@ US3,US 3 year bond note,2000,USD,Bond,1.52,0,0,US
 US30,Ultra Treasury Bond,1000,USD,Bond,1.82,0,0,US
 US30Y_micro,30 Year Micro Treasury Yield,1000,USD,Bond,0,0,0,US
 US30Y_small,Small 30YR US Treasury Yield,100,USD,Bond,0,0,0,US
-US5,US 5 year bond note,1000,USD,Bond,1.51,0,0,US
+US5,US 5 year bond note,1000,USD,Bond,1.52,0,0,US
 US5Y_micro,5 Year Micro Treasury Yield,1000,USD,Bond,0,0,0,US
 USD_small,Small US dollar,100,USD,FX,0,0,0,US
 USDCAD_micro,USDCAD_micro,10000,CAD,FX,0,0,0,US
