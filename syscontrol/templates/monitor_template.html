@@ -103,7 +103,7 @@
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary rounded">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">pysystemtrade</a>
+            <a class="navbar-brand" href="index.html">pysystemtrade</a>
             <button class="navbar-toggler" type="button"
                     data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false"
@@ -112,12 +112,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <!--            <li class="nav-item">-->
-                    <!--              <a class="nav-link active" aria-current="page" href="#">pysystemtrade</a>-->
-                    <!--            </li>-->
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="reports/index.html">Reports</a>
+                           href="reports.html">Reports</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./commands.txt">Commands</a>
@@ -145,6 +142,9 @@
                             <li><a class="dropdown-item"
                                    href="https://gitlab.com/harbor-macro/pst-prod/-/issues/?sort=closed_asc&state=all"
                                    target="_blank">Issues and tasks</a></li>
+                            <li><a class="dropdown-item"
+                                   href="https://upwork.com"
+                                   target="_blank">Upwork</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -161,9 +161,10 @@
 
     <main>
         <h2>Dashboard</h2>
-        <span class="badge text-bg-info rounded-pill">Last update <script>last_mod = new Date(document.lastModified);
-        document.write(last_mod.toISOString());</script></span>
-        <span class="badge text-bg-secondary rounded-pill">Monitoring machine {{ trading_server_description }} with database {{ dbase_description }}</span>
+        <span class="badge text-bg-info rounded-pill">Last update: <script>last_mod = new Date(document.lastModified);
+                document.write(last_mod.toISOString());</script></span>
+        <span class="badge text-bg-secondary rounded-pill">Server: {{ trading_server_description }}</span>
+        <span class="badge text-bg-secondary rounded-pill">Database: {{ dbase_description }}</span>
         <div class="table-responsive small">
         <table class="table table-striped table-sm">
             <thead>
@@ -194,7 +195,6 @@
     <footer class="pt-5 my-5 text-body-secondary border-top">Harbor Macro &copy; 2024</footer>
 </div>
 <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
-
 
 </body>
 </html>
