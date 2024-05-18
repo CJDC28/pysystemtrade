@@ -21,7 +21,7 @@ OUTPUT="$OLD_REPORTS/index.html"
 
 echo "<html lang='en'><head><meta charset="utf-8"><title>Previous reports</title><link rel="stylesheet" href="../../style.css"></head>" > $OUTPUT
 echo "<body>" >> $OUTPUT
-echo "<a href='../reports.html'>Back</a><br/>" >> $OUTPUT
+echo "<a href='../../reports.html'>Back</a><br/>" >> $OUTPUT
 echo "<h1>Directory listing:</h1>" >> $OUTPUT
 echo "<ul>" >> $OUTPUT
 for i in `find "$OLD_REPORTS" -maxdepth 1 -mindepth 1 -name "*.txt" -type f| sort -r`; do
