@@ -5,6 +5,9 @@ from sysproduction.interactive_controls import auto_update_spread_costs
 def update_slippage():
     with dataBlob(
         log_name="Update-Slippage",
+        csv_data_paths=dict(
+            csvRollParametersData="data.futures.csvconfig",
+        ),
     ) as data:
         obj = updateSlippage(data)
         obj.update_slippage()
