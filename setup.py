@@ -118,6 +118,7 @@ setup(
             "pst-backup = sysproduction.run_backups:run_backups",
             "pst-reports = sysproduction.run_reports:run_reports",
             "pst-monitor = syscontrol.monitor:monitor",
+            "pst-slippage = sysproduction.update_slippage:update_slippage",
             "pst = sysproduction.pst:pst",
         ],
     },
