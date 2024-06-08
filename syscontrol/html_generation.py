@@ -20,27 +20,31 @@ def build_reports(data: dataBlob, context: dict):
     jinja = _get_env()
     template = jinja.get_template("report_template.html")
     report_list = [
-        "Commission_report.txt",
-        "Costs_report.txt",
-        "Duplicate_markets_report.txt",
-        "Instrument_risk_report.txt",
-        "Liquidity_report.txt",
-        "Market_monitor_report.txt",
-        "Minimum_capital_report.txt",
-        "P&L_report.txt",
-        "Reconcile_report.txt",
-        "Remove_markets_report.txt",
-        "Risk_report.txt",
-        "Roll_report.txt",
-        "Slippage_report.txt",
-        "Status_report.txt",
-        "Strategy_report.txt",
-        "Trade_report.txt",
+        ("Commission Report", "Commission_report.txt"),
+        ("Costs Report", "Costs_report.txt"),
+        ("Duplicate Markets Report", "Duplicate_markets_report.txt"),
+        ("Instrument Risk Report", "Instrument_risk_report.txt"),
+        ("Liquidity Report", "Liquidity_report.txt"),
+        ("Market Monitor Report", "Market_monitor_report.txt"),
+        ("Minimum Capital Report", "Minimum_capital_report.txt"),
+        ("P&L Report", "P&L_report.txt"),
+        ("Reconcile Report", "Reconcile_report.txt"),
+        ("Remove Markets Report", "Remove_markets_report.txt"),
+        ("Risk Report", "Risk_report.txt"),
+        ("Roll Report", "Roll_report.txt"),
+        ("Slippage Report", "Slippage_report.txt"),
+        ("Status Report", "Status_report.txt"),
+        ("Strategy Report", "Strategy_report.txt"),
+        ("Trade Report", "Trade_report.txt"),
     ]
     for report in report_list:
-        with open(get_site_report_file_path(report), "w") as file:
-            data.log.info(f"Generating HTML wrapper for {report}")
-            file.write(template.render({"filename": report}))
+        with open(get_site_report_file_path(report[1]), "w") as file:
+            data.log.info(f"Generating HTML wrapper for {report[0]}")
+            file.write(
+                template.render(
+                    {"name": report[0], "filename": report[1]},
+                )
+            )
     pdf_report_list = [
         "Account_curve_report.txt.pdf",
         "Trading_Rule_P&L.txt.pdf",
