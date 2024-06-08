@@ -1,14 +1,15 @@
 #!/bin/bash
 
 #REPORTS_DIR=/Users/ageach/Dev/work/harbor-macro/harbor-macro.gitlab.io/public/reports
+RAW_REPORTS_DIR=/home/caleb/harbor-macro/harbor-macro.gitlab.io/public/reports_raw
 REPORTS_DIR=/home/caleb/harbor-macro/harbor-macro.gitlab.io/public/reports
 TODAY=`date "+%Y-%m-%d"`
 
 echo ""
 echo "`date "+%Y-%m-%d %H:%M:%S"` Starting archive of today's ($TODAY) report files..."
 
-cp -v $REPORTS_DIR_raw/Trade_report.txt $REPORTS_DIR/older/Trade_report_$TODAY.txt
-cp -v $REPORTS_DIR_raw/Strategy_report.txt $REPORTS_DIR/older/Strategy_report_$TODAY.txt
+cp -v $RAW_REPORTS_DIR/Trade_report.txt $REPORTS_DIR/older/Trade_report_$TODAY.txt
+cp -v $RAW_REPORTS_DIR/Strategy_report.txt $REPORTS_DIR/older/Strategy_report_$TODAY.txt
 
 echo "`date "+%Y-%m-%d %H:%M:%S"` Finished archive of old report files"
 echo ""
@@ -35,7 +36,7 @@ echo "`date "+%Y-%m-%d %H:%M:%S"` Finished building index for older report files
 echo ""
 
 echo "`date "+%Y-%m-%d %H:%M:%S"` Starting cleanup of temp report PDF files..."
-rm -vf $REPORTS_DIR/_tempfile_*.pdf
+rm -vf $RAW_REPORTS_DIR/_tempfile_*.pdf
 echo "`date "+%Y-%m-%d %H:%M:%S"` Finished cleanup of temp report PDF files"
 echo ""
 
