@@ -7,8 +7,8 @@ TODAY=`date "+%Y-%m-%d"`
 echo ""
 echo "`date "+%Y-%m-%d %H:%M:%S"` Starting archive of today's ($TODAY) report files..."
 
-cp -v $REPORTS_DIR/Trade_report.txt $REPORTS_DIR/older/Trade_report_$TODAY.txt
-cp -v $REPORTS_DIR/Strategy_report.txt $REPORTS_DIR/older/Strategy_report_$TODAY.txt
+cp -v $REPORTS_DIR_raw/Trade_report.txt $REPORTS_DIR/older/Trade_report_$TODAY.txt
+cp -v $REPORTS_DIR_raw/Strategy_report.txt $REPORTS_DIR/older/Strategy_report_$TODAY.txt
 
 echo "`date "+%Y-%m-%d %H:%M:%S"` Finished archive of old report files"
 echo ""
