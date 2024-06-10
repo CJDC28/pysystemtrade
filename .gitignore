@@ -32,6 +32,8 @@ venv/
 
 notes/
 
+reports/
+
 data/Norgate
 data/backups_csv
 data/barchart

@@ -5,7 +5,7 @@ from sysdata.data_blob import dataBlob
 from sysproduction.data.control_process import dataControlProcess
 from sysproduction.data.control_process import diagControlProcess
 from syscontrol.list_running_pids import describe_trading_server_login_data
-from syscontrol.html_generation import build_dashboard
+from syscontrol.html_generation import build_dashboard, build_report_files
 
 
 def monitor():
@@ -15,7 +15,7 @@ def monitor():
         check_if_pid_running_and_if_not_finish(process_observatory)
         process_observatory.update_all_status_with_process_control()
         build_dashboard(data, create_monitor_context(process_observatory))
-        # build_reports(data, {})
+        build_report_files(data, {})
         data.log.debug("Process monitor done.")
 
 
