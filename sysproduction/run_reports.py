@@ -2,7 +2,7 @@ from syscontrol.run_process import processToRun
 
 from sysdata.data_blob import dataBlob
 
-from syscontrol.html_generation import build_reports
+from syscontrol.html_generation import build_report_files
 from sysproduction.data.reports import dataReports
 
 # JUST A COPY AND PASTE JOB RIGHT NOW
@@ -60,7 +60,7 @@ class generateWrappers(object):
 
     def run_function(self):
         ## Will be renamed
-        build_reports(self.data, {})
+        build_report_files(self.data, {})
 
 
 if __name__ == "__main__":
