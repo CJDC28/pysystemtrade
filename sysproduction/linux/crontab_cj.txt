@@ -22,7 +22,8 @@ PYSYS_LOGGING_CONFIG=syslogging.logging_prod.yaml
 45 20  * * 1-5     conda activate py_310; pst-orders >> $ECHO_PATH/run_strategy_order_generator.txt 2>&1; conda deactivate
 00 21  * * 1-5     /usr/sbin/logrotate -v /home/caleb/harbor-macro/pst-prod/logrotate.conf --state /home/caleb/.logrotate.state >> /home/caleb/logrotate.log 2>&1
 10 21  * * 1-5     conda activate py_310; pst-clean >> $ECHO_PATH/run_cleaners.txt 2>&1; conda deactivate
-20 21  * * 5       conda activate py_310; pst-slippage >> $ECHO_PATH/update_slippage.txt 2>&1; conda deactivate
+15 21  * * 5       conda activate py_310; pst-slippage >> $ECHO_PATH/update_slippage.txt 2>&1; conda deactivate
+20 21  * * 1-5     conda activate py_310; pst-backup >> $ECHO_PATH/run_backups_echos.txt 2>&1; conda deactivate
 30 21  * * 1-5     conda activate py_310; pst-reports >> $ECHO_PATH/run_reports.txt 2>&1; conda deactivate
 15 22  * * 1-5     $SCRIPT_PATH/manage_report_files.sh >> $ECHO_PATH/manage_report_files.txt 2>&1
 30 22  * * 1-5     $SCRIPT_PATH/sync_from_backup.sh >> $ECHO_PATH/sync_from_backup.txt 2>&1
