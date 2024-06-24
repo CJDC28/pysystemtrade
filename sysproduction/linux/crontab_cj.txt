@@ -9,7 +9,7 @@ HOME=/home/caleb
 PYSYS_CODE=/home/caleb/pysystemtrade
 SCRIPT_PATH=/home/caleb/pysystemtrade/sysproduction/linux/scripts
 ECHO_PATH=/home/caleb/echos
-PYSYS_PRIVATE_CONFIG_DIR=/home/caleb/harbor-macro/pst-prod
+PYSYS_PRIVATE_CONFIG_DIR=/home/caleb/harbor-macro/pst-conf/prod
 PYSYS_LOGGING_CONFIG=syslogging.logging_prod.yaml
 
 0,15,30,45 * * * 1-7 export DISPLAY=:1 && /bin/bash /opt/ibc/gatewaystart.sh
@@ -20,7 +20,7 @@ PYSYS_LOGGING_CONFIG=syslogging.logging_prod.yaml
 30 20  * * 1-5     conda activate py_310; pst-multadj >> $ECHO_PATH/run_daily_update_multiple_adjusted_prices.txt 2>&1; conda deactivate
 35 20  * * 1-5     conda activate py_310; pst-systems >> $ECHO_PATH/run_systems.txt 2>&1; conda deactivate
 45 20  * * 1-5     conda activate py_310; pst-orders >> $ECHO_PATH/run_strategy_order_generator.txt 2>&1; conda deactivate
-00 21  * * 1-5     /usr/sbin/logrotate -v /home/caleb/harbor-macro/pst-prod/logrotate.conf --state /home/caleb/.logrotate.state >> /home/caleb/logrotate.log 2>&1
+00 21  * * 1-5     /usr/sbin/logrotate -v /home/caleb/harbor-macro/pst-conf/prod/logrotate.conf --state /home/caleb/.logrotate.state >> /home/caleb/logrotate.log 2>&1
 10 21  * * 1-5     conda activate py_310; pst-clean >> $ECHO_PATH/run_cleaners.txt 2>&1; conda deactivate
 15 21  * * 5       conda activate py_310; pst-slippage >> $ECHO_PATH/update_slippage.txt 2>&1; conda deactivate
 20 21  * * 1-5     conda activate py_310; pst-backup >> $ECHO_PATH/run_backups_echos.txt 2>&1; conda deactivate
