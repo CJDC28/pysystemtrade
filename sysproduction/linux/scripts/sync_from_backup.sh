@@ -4,7 +4,7 @@ SOURCE="/home/caleb/pysystemtrade/data/backups_csv";
 DEST="/home/caleb/pysystemtrade/data/futures_cj";
 SPREAD_DEST="/home/caleb/pysystemtrade/data/futures";
 
-echo "`date "+%Y-%m-%d %H:%M:%S"` Syncing backup files, source: '$SOURCE', dest: '$DEST'"
+echo "`date "+%Y-%m-%d %H:%M:%S"` Syncing backup files, source: '$SOURCE', dest: '$DEST', '$SPREAD_DEST'"
 
 echo "`date "+%Y-%m-%d %H:%M:%S"` Backing up adjusted prices"
 rsync -av $SOURCE/adjusted_prices/*.csv $DEST/adjusted_prices_csv
@@ -21,7 +21,7 @@ rsync -av $SOURCE/spread_costs/spreadcosts.csv $SPREAD_DEST/csvconfig
 echo "`date "+%Y-%m-%d %H:%M:%S"` Committing to repo"
 cd $PYSYS_CODE
 git pull
-git add --verbose $DEST
+git add --verbose $DEST $SPREAD_DEST
 git commit -m "Syncing data files to repo"
 git push origin
 
