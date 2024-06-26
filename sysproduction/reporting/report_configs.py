@@ -145,6 +145,65 @@ account_curve_report_config = reportConfig(
     output="email",
 )
 
+trading_rule_pandl_report_config = reportConfig(
+    title="Trading Rule P&L report",
+    function="sysproduction.reporting.trading_rule_pandl_report.trading_rule_pandl_report",
+    output="email",
+    config_filename="systems.caleb.caleb_strategy_v3.yaml",
+    #config_filename="systems.caleb.caleb_strategy_v3_debug.yaml",
+    dict_of_rule_groups=dict(
+        acceleration=["accel16", "accel32", "accel64"],
+        asset_class_trend=[
+            "assettrend2",
+            "assettrend4",
+            "assettrend8",
+            "assettrend16",
+            "assettrend32",
+            "assettrend64",
+        ],
+        breakout=[
+            "breakout10",
+            "breakout20",
+            "breakout40",
+            "breakout80",
+            "breakout160",
+            "breakout320",
+        ],
+        ewmac_momentum=[
+            "momentum4",
+            "momentum8",
+            "momentum16",
+            "momentum32",
+            "momentum64",
+        ],
+        normalised_momentum=[
+            "normmom2",
+            "normmom4",
+            "normmom8",
+            "normmom16",
+            "normmom32",
+            "normmom64",
+        ],
+        relative_momentum=[
+            "relmomentum10",
+            "relmomentum20",
+            "relmomentum40",
+            "relmomentum80",
+        ],
+        carry=["carry10", "carry30", "carry60", "carry125"],
+        relative_carry=["relcarry"],
+        skew=['skewabs180', 'skewabs365', 'skewrv180', 'skewrv365'],
+        misc_mr=["mrinasset1000"],
+    ),
+    # dict_of_rule_groups=dict(
+    #     ewmac_momentum=["momentum8", "momentum32"],
+    #     carry=["carry30", "carry60"],
+    # ),
+    #list_of_periods=["YTD", "1Y", "3Y", "10Y", "99Y"],
+    list_of_periods=["1Y", "3Y", "10Y", "99Y"],
+)
+
+
 ## The reports will be run in this order
 report_config_defaults = dict(
     slippage_report=slippage_report_config,
@@ -164,4 +223,5 @@ report_config_defaults = dict(
     market_monitor_report=market_monitor_report_config,
     account_curve_report=account_curve_report_config,
     commission_report=commission_report_config,
+    trading_rule_pandl_report=trading_rule_pandl_report_config,
 )
