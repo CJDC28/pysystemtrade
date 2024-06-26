@@ -150,7 +150,7 @@ trading_rule_pandl_report_config = reportConfig(
     function="sysproduction.reporting.trading_rule_pandl_report.trading_rule_pandl_report",
     output="email",
     config_filename="systems.caleb.caleb_strategy_v3.yaml",
-    #config_filename="systems.caleb.caleb_strategy_v3_debug.yaml",
+    # config_filename="systems.caleb.caleb_strategy_v3_debug.yaml",
     dict_of_rule_groups=dict(
         acceleration=["accel16", "accel32", "accel64"],
         asset_class_trend=[
@@ -192,14 +192,14 @@ trading_rule_pandl_report_config = reportConfig(
         ],
         carry=["carry10", "carry30", "carry60", "carry125"],
         relative_carry=["relcarry"],
-        skew=['skewabs180', 'skewabs365', 'skewrv180', 'skewrv365'],
+        skew=["skewabs180", "skewabs365", "skewrv180", "skewrv365"],
         misc_mr=["mrinasset1000"],
     ),
     # dict_of_rule_groups=dict(
     #     ewmac_momentum=["momentum8", "momentum32"],
     #     carry=["carry30", "carry60"],
     # ),
-    #list_of_periods=["YTD", "1Y", "3Y", "10Y", "99Y"],
+    # list_of_periods=["YTD", "1Y", "3Y", "10Y", "99Y"],
     list_of_periods=["1Y", "3Y", "10Y", "99Y"],
 )
 
