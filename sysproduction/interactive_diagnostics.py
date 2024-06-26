@@ -65,6 +65,7 @@ from sysproduction.reporting.report_configs import (
     market_monitor_report_config,
     account_curve_report_config,
     commission_report_config,
+    trading_rule_pandl_report_config,
 )
 
 
@@ -135,6 +136,7 @@ nested_menu_of_options = {
         74: "Remove markets",
         75: "Market monitor",
         76: "P&L account curve",
+        77: "Trading Rule P&L",
     },
 }
 
@@ -291,6 +293,11 @@ def account_curve_report(data: dataBlob):
 
     report_config = email_or_print_or_file(account_curve_report_config)
     report_config.modify_kwargs(start_date=start_date, end_date=end_date)
+    run_report(report_config, data=data)
+
+
+def trading_rule_pandl_report(data: dataBlob):
+    report_config = email_or_print_or_file(trading_rule_pandl_report_config)
     run_report(report_config, data=data)
 
 
@@ -754,6 +761,7 @@ dict_of_functions = {
     74: remove_markets_report,
     75: market_monitor_report,
     76: account_curve_report,
+    77: trading_rule_pandl_report,
 }
 
 if __name__ == "__main__":
