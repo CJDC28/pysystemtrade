@@ -2,7 +2,7 @@
 # start_date: 2000-01-19
 use_forecast_scale_estimates: False
 use_forecast_weight_estimates: False
-use_forecast_div_mult_estimates: True
+use_forecast_div_mult_estimates: False
 use_instrument_weight_estimates: False
 use_instrument_div_mult_estimates: False
 
