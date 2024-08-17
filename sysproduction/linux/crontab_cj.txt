@@ -29,7 +29,7 @@ PYSYS_LOGGING_CONFIG=syslogging.logging_prod.yaml
 30 22  * * 1-5     $SCRIPT_PATH/sync_from_backup.sh >> $ECHO_PATH/sync_from_backup.txt 2>&1
 */5 *  * * *       conda activate py_310; pst-monitor >> /home/caleb/echos/run_monitor.txt 2>&1; conda deactivate
 # * * * * *        conda activate py_310; echo "`date` `conda run -n py_310 python -VV`, $SCRIPT_PATH, $PYSYS_CODE, $ECHO_PATH" >> /home/caleb/echos/cron_test.txt 2>&1
-1,6,11,16,21,26,31,36,41,46,51,56 * * * 1-5    $SCRIPT_PATH/push_site.sh >> $ECHO_PATH/push_site.txt 2>&1
+00 * * * 1-5       $SCRIPT_PATH/push_site.sh >> $ECHO_PATH/push_site.txt 2>&1
 #
 @reboot             conda activate py_310; pst-startup 2>&1; conda deactivate
 
