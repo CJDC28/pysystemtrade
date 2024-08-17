@@ -3,6 +3,7 @@ from sysobjects.production.trading_hours.trading_hours import (
     tradingHours,
     listOfTradingHours,
 )
+from syscontrol.html_generation import build_report_files
 from syscore.interactive.input import (
     get_input_from_user_and_convert_to_type,
     true_if_answer_is_yes,
@@ -299,6 +300,10 @@ def account_curve_report(data: dataBlob):
 def trading_rule_pandl_report(data: dataBlob):
     report_config = email_or_print_or_file(trading_rule_pandl_report_config)
     run_report(report_config, data=data)
+
+
+def regenerate_html_reports(data):
+    build_report_files(data=data, context={})
 
 
 def email_or_print_or_file(report_config):
@@ -762,6 +767,7 @@ dict_of_functions = {
     75: market_monitor_report,
     76: account_curve_report,
     77: trading_rule_pandl_report,
+    78: regenerate_html_reports,
 }
 
 if __name__ == "__main__":
