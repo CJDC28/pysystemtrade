@@ -138,6 +138,7 @@ nested_menu_of_options = {
         75: "Market monitor",
         76: "P&L account curve",
         77: "Trading Rule P&L",
+        78: "Regenerate HTML reports",
     },
 }
 
