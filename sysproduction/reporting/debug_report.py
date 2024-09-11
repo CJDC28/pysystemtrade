@@ -99,6 +99,10 @@ def run_account_curve_report():
     pass
 
 
+def run_trading_rule_pandl_report():
+    do_report(trading_rule_pandl_report_config.new_config_with_modified_output("file"))
+
+
 def instrument_risk_csv():
     output = dict()
     sim_data = csvFuturesSimData()
@@ -135,6 +139,7 @@ if __name__ == "__main__":
     # run_market_monitor_report()
     # run_account_curve_report()
     # run_slippage_report()
+    # run_trading_rule_pandl_report()
 
     # run_fsb_report()
     # run_min_capital_fsb_report()
