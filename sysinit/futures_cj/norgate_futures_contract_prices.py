@@ -1,4 +1,5 @@
 import os
+from numpy import isnan
 
 from syscore.dateutils import month_from_contract_letter
 from syscore.fileutils import (
@@ -11,20 +12,11 @@ from sysdata.csv.csv_futures_contract_prices import ConfigCsvFuturesPrices
 from sysdata.csv.csv_instrument_data import csvFuturesInstrumentData
 from sysdata.csv.csv_roll_parameters import csvRollParametersData
 from sysinit.futures.contract_prices_from_csv_to_arctic import (
-    init_arctic_with_csv_futures_contract_prices,
-    init_arctic_with_csv_futures_contract_prices_for_code,
+    init_db_with_csv_futures_contract_prices,
+    init_db_with_csv_futures_contract_prices_for_code,
     init_arctic_with_csv_futures_contract_prices_for_contract,
 )
-from sysinit.futures_cj.barchart_futures_contract_prices_single import (
-    transfer_barchart_prices_to_arctic_single,
-)
-from numpy import isnan
 
-from sysdata.csv.csv_futures_contract_prices import csvFuturesContractPriceData
-from sysdata.arctic.arctic_futures_per_contract_prices import (
-    arcticFuturesContractPriceData,
-)
-from sysobjects.contracts import futuresContract
 
 NORGATE_CONFIG = ConfigCsvFuturesPrices(
     input_date_index_name="Date",
@@ -34,21 +26,6 @@ NORGATE_CONFIG = ConfigCsvFuturesPrices(
     input_column_mapping=dict(
         OPEN="Open", HIGH="High", LOW="Low", FINAL="Close", VOLUME="Volume"
     ),
-)
-
-# Time,Open,High,Low,Close,Volume
-BARCHART_CONFIG = ConfigCsvFuturesPrices(
-    input_date_index_name="Time",
-    input_skiprows=0,
-    input_skipfooter=0,
-    input_date_format="%Y-%m-%dT%H:%M:%S%z",
-    input_column_mapping=dict(
-        OPEN="Open", HIGH="High", LOW="Low", FINAL="Close", VOLUME="Volume"
-    ),
-)
-
-BACKUP_CONFIG = ConfigCsvFuturesPrices(
-    input_skiprows=0, input_skipfooter=1, apply_multiplier=100.0
 )
 
 
@@ -287,45 +264,13 @@ def transfer_norgate_prices_to_arctic_single_contract(instr, contract, datapath)
 
 
 def transfer_norgate_prices_to_arctic_single(instr, datapath):
-    init_arctic_with_csv_futures_contract_prices_for_code(
+    init_db_with_csv_futures_contract_prices_for_code(
         instr, datapath, csv_config=build_import_config(instr)
     )
 
 
 def transfer_norgate_prices_to_arctic(datapath):
-    init_arctic_with_csv_futures_contract_prices(datapath, csv_config=NORGATE_CONFIG)
-
-
-def transfer_barchart_prices_to_arctic_single_contract(instr, contract, datapath):
-    init_arctic_with_csv_futures_contract_prices_for_contract(
-        instr, contract, datapath, csv_config=BARCHART_CONFIG
-    )
-
-
-def convert_barchart_to_norgate_single_contract(contract_obj):
-    source_path = resolve_path_and_filename_for_package(
-        get_production_config().get_element_or_missing_data("barchart_path")
-    )
-    source = csvFuturesContractPriceData(source_path, config=BARCHART_CONFIG)
-    df = source.get_prices_for_contract_object(contract_obj)
-
-    logic = {
-        "OPEN": "first",
-        "HIGH": "max",
-        "LOW": "min",
-        "FINAL": "last",
-        "VOLUME": "sum",
-    }
-
-    df = df.resample("D").apply(logic)
-    df = df.dropna()
-
-    dest_path = resolve_path_and_filename_for_package(
-        "/Users/ageach/Dev/work/pyhistprice/data/barchart_caleb_fx2"
-    )
-    dest = csvFuturesContractPriceData(dest_path, config=NORGATE_CONFIG)
-
-    dest.write_prices_for_contract_object(contract_obj, df, ignore_duplication=True)
+    init_db_with_csv_futures_contract_prices(datapath, csv_config=NORGATE_CONFIG)
 
 
 def build_import_config(instr):
@@ -351,8 +296,7 @@ if __name__ == "__main__":
     # datapath = "/home/caleb/pysystemtrade/data/Norgate/Futures"
     # datapath = "/home/caleb/pysystemtrade/data/Norgate/Future_conv"
     datapath = resolve_path_and_filename_for_package(
-        get_production_config().get_element_or_missing_data("norgate_path")
-        # get_production_config().get_element_or_missing_data("barchart_path")
+        get_production_config().get_element_or_arg_not_supplied("norgate_path")
     )
 
     # rename/move files, just for one (Norgate style) instrument code. Operates in 'dry_run' mode by default
@@ -371,19 +315,6 @@ if __name__ == "__main__":
     # import all contract files for one instrument
     # transfer_norgate_prices_to_arctic_single(instrument_code, datapath=datapath)
 
-    # import all contract files for more than one instrument
-    # for instr in ["GOLD", "SP500"]:
-
-    # for instr in ['STERLING3']:
-    # for instr in ['BOBL', 'BTP', 'BUND', 'BUXL', 'EDOLLAR', 'EURIBOR', 'OAT', 'SHATZ', 'US10', 'US10U', 'US2', 'US20', 'US30', 'US5']:
-    # for instr in # ['CAC', 'DAX', 'DOW', 'EUROSTX', 'FTSE100', 'NASDAQ', 'NIKKEI', 'RUSSELL', 'SMI', 'SP400', 'VIX']:
-    # for instr in ['AUD', 'BITCOIN', 'CAD', 'CHF', 'JPY', 'MXP']:
-    # for instr in ['JPY', 'OJ', 'COFFEE', 'SUGAR11', 'COPPER', 'RICE']:
-    # for instr in ['JPY', 'OJ', 'COFFEE', 'SUGAR11', 'COPPER', 'RICE']:
-    # for instr in ["BOBL", "BTP", "BUND", "BUXL", "CAC", "CANOLA", "COTTON", "EURIBOR", "EUROSTX", "DAX", "FTSE100", "GASOIL", "NIKKEI", "OAT", "ROBUSTA", "SHATZ", "SMI", "VIX"]:
-    # for instr in ["BOBL", "BTP", "BUND", "BUXL", "OAT", "SHATZ"]:
-    # for instr in ['COTTON2']:
-    # for instr in ['EURIBOR']:
     # for instr in ['NIKKEI']:
 
     for instr in ["MXP", "CHF", "CAD", "AUD"]:
@@ -391,25 +322,6 @@ if __name__ == "__main__":
 
     # import all contract files for all instruments
     # transfer_norgate_prices_to_arctic(datapath=datapath)
-
-    # for instr in ["NZD"]:
-    #     for contract_date in ['20130900']:
-    #         transfer_barchart_prices_to_arctic_single_contract(instr, contract_date, datapath)
-
-    # DX: failed, no contract files after March 2013        REDO 2021-09-16-2021-12-01
-    # EUR: failed, no contract files after September 2017   REDO 2017-06-10 - 2017-09-01, 2021-09-01 - 2022-01-01
-    # GBP: failed, no contract files after December 2003    REDO '2003-09-01':'2004-01-01'
-    # NZD: failed, no contract files after June 2013        REDO '2013-03-01':'2013-07-01'
-    # contract = futuresContract.from_two_strings("EUR", "20171200")
-    # for year in ['2017', '2018', '2019', '2020', '2021', '2022']:
-    # for year in ['2003', '2004', '2005', '2006','2007', '2008', '2009', '2010', '2011', '2012',
-    #    '2013', '2014', '2015', '2016','2017', '2018', '2019', '2020', '2021', '2022']:
-    # for year in ['2013', '2014', '2015', '2016','2017', '2018', '2019', '2020', '2021', '2022']:
-    # for instr in ['DX', 'EUR', 'GBP', 'NZD']:
-    # for instr in ['DX']:
-    #     for year in ['2013', '2014', '2015', '2016','2017', '2018', '2019', '2020', '2021', '2022']:
-    #         for month in ['03', '06', '09', '12']:
-    #             convert_barchart_to_norgate_single_contract(futuresContract.from_two_strings(instr, f"{year}{month}00"))
 
     # bash rename COTTON_YYYYMMDD.csv to COTTON2_YYYYMMDD.csv
     # for i in *-doc-*.txt; do mv "$i" "${i/*-doc-/doc-}"; done
