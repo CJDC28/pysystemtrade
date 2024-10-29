@@ -7,7 +7,7 @@ from syscore.fileutils import (
 from syscore.dateutils import month_from_contract_letter
 
 from sysinit.futures.contract_prices_from_csv_to_arctic import (
-    init_arctic_with_csv_futures_contract_prices,
+    init_db_with_csv_futures_contract_prices,
 )
 from syscore.fileutils import resolve_path_and_filename_for_package
 from sysdata.config.production_config import get_production_config
@@ -106,9 +106,7 @@ backup_csv_config = ConfigCsvFuturesPrices(
 
 def transfer_barchart_prices_to_arctic(datapath):
     strip_file_names(datapath)
-    init_arctic_with_csv_futures_contract_prices(
-        datapath, csv_config=barchart_csv_config
-    )
+    init_db_with_csv_futures_contract_prices(datapath, csv_config=barchart_csv_config)
 
 
 def transfer_backup_prices_to_arctic(datapath):
