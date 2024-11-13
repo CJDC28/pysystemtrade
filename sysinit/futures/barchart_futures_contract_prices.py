@@ -6,7 +6,7 @@ from syscore.fileutils import (
 )
 from syscore.dateutils import month_from_contract_letter
 
-from sysinit.futures.contract_prices_from_csv_to_arctic import (
+from sysinit.futures.contract_prices_from_csv_to_db import (
     init_db_with_csv_futures_contract_prices,
 )
 from syscore.fileutils import resolve_path_and_filename_for_package
@@ -104,20 +104,20 @@ backup_csv_config = ConfigCsvFuturesPrices(
 )
 
 
-def transfer_barchart_prices_to_arctic(datapath):
+def transfer_barchart_prices_to_db(datapath):
     strip_file_names(datapath)
     init_db_with_csv_futures_contract_prices(datapath, csv_config=barchart_csv_config)
 
 
-def transfer_backup_prices_to_arctic(datapath):
-    init_arctic_with_csv_futures_contract_prices(datapath, csv_config=backup_csv_config)
+def transfer_backup_prices_to_db(datapath):
+    init_db_with_csv_futures_contract_prices(datapath, csv_config=backup_csv_config)
 
 
 if __name__ == "__main__":
     input("Will overwrite existing prices are you sure?! CTL-C to abort")
     # modify flags as required
     datapath = resolve_path_and_filename_for_package(
-        get_production_config().get_element_or_missing_data("backup_path")
+        get_production_config().get_element("backup_path")
     )
-    # transfer_barchart_prices_to_arctic(datapath)
-    transfer_backup_prices_to_arctic(datapath)
+    # transfer_barchart_prices_to_db(datapath)
+    transfer_backup_prices_to_db(datapath)
