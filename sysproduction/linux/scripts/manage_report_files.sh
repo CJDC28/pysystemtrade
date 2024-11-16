@@ -37,6 +37,7 @@ echo ""
 
 echo "`date "+%Y-%m-%d %H:%M:%S"` Starting cleanup of temp report PDF files..."
 rm -vf $RAW_REPORTS_DIR/_tempfile_*.pdf
+rm -vf $REPORTS_DIR/_tempfile_*.pdf
 echo "`date "+%Y-%m-%d %H:%M:%S"` Finished cleanup of temp report PDF files"
 echo ""
 
