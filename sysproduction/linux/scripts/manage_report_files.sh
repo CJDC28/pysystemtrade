@@ -36,8 +36,8 @@ echo "`date "+%Y-%m-%d %H:%M:%S"` Finished building index for older report files
 echo ""
 
 echo "`date "+%Y-%m-%d %H:%M:%S"` Starting cleanup of temp report PDF files..."
-rm -vf $RAW_REPORTS_DIR/_tempfile_*.pdf
-rm -vf $REPORTS_DIR/_tempfile_*.pdf
+find $RAW_REPORTS_DIR -mindepth 1 -name "_tempfile_*.pdf" -mtime +3 -delete
+find $REPORTS_DIR -mindepth 1 -name "_tempfile_*.pdf" -mtime +3 -delete
 echo "`date "+%Y-%m-%d %H:%M:%S"` Finished cleanup of temp report PDF files"
 echo ""
 
