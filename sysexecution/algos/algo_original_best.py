@@ -267,15 +267,8 @@ class algoOriginalBest(Algo):
         ticker_object = broker_order_with_controls.ticker
         current_tick = str(ticker_object.current_tick())
 
-        log_report = (
-            "%s execution with limit price desired:%f actual:%f last tick %s"
-            % (
-                agg_txt,
-                limit_price,
-                broker_limit_price,
-                current_tick,
-            )
-        )
+        log_report = (f"{agg_txt} execution with limit price desired {limit_price}, "
+                      f"actual {broker_limit_price}, last tick {current_tick}")
 
         self.data.log.debug(
             log_report,
