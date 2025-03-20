@@ -12,7 +12,7 @@ ECHO_PATH=/home/caleb/echos
 PYSYS_PRIVATE_CONFIG_DIR=/home/caleb/harbor-macro/pst-conf/prod
 PYSYS_LOGGING_CONFIG=syslogging.logging_prod.yaml
 
-0,15,30,45 * * * 1-7 export DISPLAY=:1 && /bin/bash /opt/ibc/gatewaystart.sh
+0,15,30,45 * * * 1-7 export DISPLAY=:1 && /bin/bash /opt/ibc-3.21.2/gatewaystart.sh
 00 03  * * 1-5     conda activate py_310; pst-stack >> $ECHO_PATH/run_stack_handler.txt 2>&1; conda deactivate
 50 03  * * 1-5     conda activate py_310; pst-capital >> $ECHO_PATH/run_capital_update.txt 2>&1; conda deactivate
 05 07  * * 1-5     conda activate py_310; pst-fx >> $ECHO_PATH/run_daily_fx_and_contract_updates.txt 2>&1; conda deactivate
