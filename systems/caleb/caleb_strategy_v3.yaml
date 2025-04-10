@@ -526,7 +526,6 @@ forecast_div_multiplier:
   LEANHOG: 1.9071753010460384
   LIVECOW: 1.9071753010460384
   LUMBER-new: 1.5305912029494615
-  MILK: 1.9071753010460384
   MXP: 1.9071753010460384
   NASDAQ_micro: 1.9071753010460384
   NIKKEI: 1.9071753010460384
@@ -601,26 +600,23 @@ instrument_weights:
         softs:
           weight: 0.33
           cocoa:
-            weight: 0.143
+            weight: 0.1667
             COCOA: 1.0
           coffee:
-            weight: 0.143
+            weight: 0.1667
             COFFEE: 0.5
             ROBUSTA: 0.5
           cotton:
-            weight: 0.143
+            weight: 0.1667
             COTTON2: 1.0
-          milk:
-            weight: 0.143
-            MILK: 1.0
           oj:
-            weight: 0.143
+            weight: 0.1667
             OJ: 1.0
           sugar:
-            weight: 0.142
+            weight: 0.1667
             SUGAR11: 1.0
           wood:
-            weight: 0.143
+            weight: 0.1667
             LUMBER-new: 1.0
       rates:
         weight: 0.143
