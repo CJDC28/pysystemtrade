@@ -105,7 +105,7 @@ def _send_msg(msg: MIMEMultipart):
 def _build_subject(subject: str):
     config = get_production_config()
     prefix = config.get_element_or_default("email_subject_prefix", "PST")
-    return f"{prefix}: {subject}"
+    return f"{prefix} {subject}"
 
 
 def get_email_details():
