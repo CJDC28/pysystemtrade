@@ -2,7 +2,7 @@
 
 #REPORTS_DIR=/Users/ageach/Dev/work/harbor-macro/harbor-macro.gitlab.io/public/reports
 RAW_REPORTS_DIR=/home/caleb/pysystemtrade/reports
-REPORTS_DIR=/home/caleb/harbor-macro/harbor-macro.gitlab.io/public/reports
+REPORTS_DIR=/home/caleb/harbor-macro/harbor-macro-site/public/reports
 TODAY=`date "+%Y-%m-%d"`
 
 echo ""
