@@ -18,15 +18,20 @@ class cleanTruncateBacktestStates:
 
     def clean_backtest_states(self):
         directory_to_use = get_directory_store_backtests()
+        max_age = get_production_config().get_element("backtest_max_age")
+
         self.data.log.debug(
             "Deleting old .pck and .yaml backtest state files in directory '%s'"
             % directory_to_use
         )
         delete_old_files_with_extension_in_pathname(
-            directory_to_use, days_old=3, extension=".pck"
+            directory_to_use, days_old=max_age, extension=".pck"
         )
         delete_old_files_with_extension_in_pathname(
-            directory_to_use, days_old=3, extension=".yaml"
+            directory_to_use, days_old=max_age, extension=".pckz"
+        )
+        delete_old_files_with_extension_in_pathname(
+            directory_to_use, days_old=max_age, extension=".yaml"
         )
 
         # also clear offline backup
@@ -36,10 +41,10 @@ class cleanTruncateBacktestStates:
             f"Deleting old .pck and .yaml backtest state files in directory '{offline}'"
         )
         delete_old_files_with_extension_in_pathname(
-            offline, days_old=3, extension=".pck"
+            offline, days_old=max_age, extension=".pck"
         )
         delete_old_files_with_extension_in_pathname(
-            offline, days_old=3, extension=".yaml"
+            offline, days_old=max_age, extension=".yaml"
         )
 
 
