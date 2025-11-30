@@ -105,7 +105,7 @@ instrument_weights:
   EUROSTX: 0.1
   GOLD_micro: 0.1
   MXP: 0.1
-  SP500: 0.1
+  SP500_micro: 0.1
   VIX: 0.1
   US30: 0.1
 
