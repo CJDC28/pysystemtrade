@@ -33,7 +33,6 @@ from sysobjects.production.override import (
 from sysproduction.data.controls import dataPositionLimits
 from sysproduction.data.optimal_positions import dataOptimalPositions
 from sysproduction.data.controls import diagOverrides
-from sysproduction.data.positions import diagPositions
 
 from sysproduction.data.capital import capital_for_strategy
 from sysproduction.data.risk import (
@@ -78,15 +77,7 @@ class orderGeneratorForDynamicPositions(orderGeneratorForStrategy):
             current_positions=current_positions,
         )
 
-        # Check for Force/Force_Outright roll status
-        diag_positions = diagPositions(self.data)
-        for trade in list_of_trades:
-            instr_code = trade.instrument_code
-            if diag_positions.is_double_sided_trade_roll_state(instr_code):
-                roll_state = diag_positions.get_name_of_roll_state(instr_code)
-                self.log.critical(
-                    f"Optimal order created for {instr_code} with status {roll_state}"
-                )
+        self.issue_force_warnings(list_of_trades)
 
         return list_of_trades
 
