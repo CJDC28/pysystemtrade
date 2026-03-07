@@ -1,5 +1,6 @@
 import pandas as pd
 from arctic import Arctic
+#from arcticdb import Arctic
 from sysdata.mongodb.mongo_connection import mongoDb, clean_mongo_host
 
 """
@@ -27,6 +28,7 @@ class arcticData(object):
         # Arctic doesn't accept a port
 
         store = Arctic(client)
+        #store = Arctic(mongo_db.host)
 
         self.database_name = database_name
         self.collection_name = collection_name
@@ -61,4 +63,5 @@ class arcticData(object):
         lib_name = db_name + "." + coll_name
         if lib_name not in store.list_libraries():
             store.initialize_library(lib_name)
+            #store.create_library(lib_name)
         return store[lib_name]

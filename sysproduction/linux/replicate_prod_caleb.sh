@@ -29,8 +29,8 @@ rsync -chavzP --stats --progress --delete $PARQUET_SOURCE $PARQUET_TARGET
 echo "rsync of remote files to local COMPLETE"
 
 echo "Dropping local databases..."
-mongo $DB_TARGET --eval "db.dropDatabase()"
-mongo arctic_$DB_TARGET --eval "db.dropDatabase()"
+mongosh $DB_TARGET --eval "db.dropDatabase()"
+mongosh arctic_$DB_TARGET --eval "db.dropDatabase()"
 echo "Dropping local databases COMPLETE"
 
 echo "Restoring remote data to local database..."
