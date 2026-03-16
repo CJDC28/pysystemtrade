@@ -94,8 +94,6 @@ def _configure_sim():
         datefmt="%Y-%m-%d %H:%M:%S",
         level=logging.DEBUG,
     )
-    logging.getLogger("ib_insync").setLevel(logging.WARNING)
-    logging.getLogger("arctic").setLevel(logging.WARNING)
     syslogging.logging_configured = True
 
 
